@@ -1,0 +1,247 @@
+/* Importa base */
+@import url('estilo.css');
+
+/* Conteúdo principal */
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.container h1 {
+  margin-bottom: 20px;
+}
+
+.container h2 {
+  text-align: left;
+  margin: 20px 0;
+}
+
+/* Galeria de produtos */
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #E3D5C5;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px 0;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.btn {
+  background-color: #B39A89;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.btn.desativar {
+  background-color: #7A6550;
+}
+
+/* Menu de três pontos */
+.menu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.menu .material-icons {
+  font-size: 22px;
+  color: #333;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 10;
+  min-width: 100px;
+}
+
+.dropdown a,
+.dropdown button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+}
+
+.dropdown a:hover,
+.dropdown button:hover {
+  background-color: #eee;
+}
+
+
+/* Card adicionar novo */
+.product-card.add-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+  color: #7A6550;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.dropdown.show {
+  display: block;
+}
+
+.dropdown button {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.product-card .menu {
+  position: relative;
+  cursor: pointer;
+  text-align: right;
+}
+/* Galeria de produtos */
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #E3D5C5;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+  text-align: center;
+}
+
+/* Imagem do produto */
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px 0;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px; /* adiciona espaçamento da descrição pro botão */
+}
+
+/* Botão ativar/desativar */
+.btn {
+  background-color: #B39A89;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 8px; /* mais espaçamento em relação ao texto */
+}
+
+.btn.desativar {
+  background-color: #7A6550;
+}
+
+/* Menu de três pontos fixo no canto */
+.menu {
+  position: absolute;
+  top: 8px;   /* cola no topo */
+  right: 8px; /* cola na direita */
+  cursor: pointer;
+}
+
+.menu .material-icons {
+  font-size: 22px;
+  color: #333;
+}
+
+/* Dropdown */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 10;
+  min-width: 100px;
+}
+
+.dropdown button {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background-color: #eee;
+}
+
+/* Mostrar dropdown ao passar o mouse */
+.menu:hover .dropdown {
+  display: block;
+}
+
+/* Card adicionar novo */
+.product-card.add-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  cursor: pointer;
+  color: #7A6550;
+}

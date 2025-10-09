@@ -1,0 +1,131 @@
+/* Importa base */
+@import url('estilo.css');
+
+.cadastro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0; 
+  gap: 20px;
+  height: 70vh;
+  justify-content: center;
+}
+
+.cadastro form {
+  display: flex;
+  flex-direction: column; 
+  gap: 15px; 
+  background-color: #ECDCCE; 
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.cadastro h2 {
+  text-align: center;
+  margin: 0;
+  color: #333;
+}
+
+.cadastro label {
+  font-weight: bold;
+  color: #555;
+}
+
+.cadastro input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.btn-cancelar {
+  padding: 10px 55px;
+  background-color: #84593d;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-salvar {
+  padding: 10px 55px;
+  background-color: #A78F7D;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cadastro button:hover {
+  background-color: #c5a68f; 
+}
+
+/* Campo de upload de foto */
+input[type="file"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 6px;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Botões */
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn-group button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.btn-group .cancelar {
+  background-color: #8c5a41;
+  color: #fff;
+}
+
+.btn-group .salvar {
+  background-color: #a97c5d;
+  color: #fff;
+
+}
+
+/* estilo geral do select */
+.cadastro select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+  appearance: none; /* tira o estilo padrão do navegador */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.cadastro select optgroup {
+  font-weight: bold;
+  color: #444;
+  background-color: #f2f2f2;
+  padding: 5px;
+}
+
+.cadastro select option {
+  padding: 10px;
+  font-size: 15px;
+}

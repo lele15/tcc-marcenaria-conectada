@@ -1,0 +1,136 @@
+/* Importa base */
+@import url('estilo.css');
+
+/* ===== Carrinho ===== */
+.cart-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #EADCCF;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.cart-container h1 {
+    margin-bottom: 25px;
+    color: #333;
+    text-align: center;
+}
+
+/* ===== Produto ===== */
+.produto {
+    display: flex;
+    align-items: center;
+    background-color: #F0E6DA;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.produto img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.produto-info {
+    flex: 1;
+}
+
+.produto-info strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.produto-info span {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ===== Quantidade ===== */
+.quantidade {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantidade button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 4px;
+    background-color: #D7BDA6;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ===== Subtotal e Remover ===== */
+.subtotal {
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+.remover-btn {
+    background-color: #D7BDA6;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ===== Resumo ===== */
+.resumo {
+    background-color: #EADCCF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.resumo h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.resumo p, .resumo .total {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.resumo hr {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.resumo button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Botões específicos */
+.whatsapp-btn {
+    background-color: #D7BDA6;
+    color: #fff;
+}
+
+.continuar-btn {
+    background-color: #A78F7D;
+    color: #fff;
+}
+
+.limpar-btn {
+    background-color: #8B5E45;
+    color:#fff;
+}

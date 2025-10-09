@@ -1,0 +1,105 @@
+/* Importa base */
+@import url('estilo.css');
+
+.visualizar {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza por padrão */
+  margin: 40px auto;
+  max-width: 600px;
+  padding: 30px;
+  background-color: #f2e0d0;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  justify-content: center;
+  height: 60vh;
+  width: 50vh;
+  margin-top: 10vh;
+}
+
+.visualizar h1 {
+  margin: 10px 0;
+  font-size: 2rem;
+  color: #3d2c2c;
+  text-align: center;
+}
+
+/* Ícone de perfil bem maior, sem o fundo */
+.profile-photo .material-icons{
+  font-size: 140px;   /* aumenta o tamanho do ícone */
+  color: #3d2c2c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  line-height: 1; /* evita espaçamento extra */
+}
+
+.profile-info {
+  text-align: left;
+  margin: 20px 0;
+  line-height: 1.8;
+  font-size: 1.3rem;
+  color: #333;
+  align-self: flex-start; 
+}
+
+/* Botão de histórico */
+.history-btn {
+  background-color: #A78F7D;
+  color: #fff;
+  padding: 12px 77px; 
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 15px 0;
+  transition: 0.3s;
+  align-self: flex-start;
+}
+
+/* Botões de ação */
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  align-self: flex-start; 
+}
+
+.edit-btn {
+  background-color:#8c5a41;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.delete-btn {
+  background-color:#a97c5d;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.delete-btn:hover,
+.edit-btn:hover,
+.history-btn:hover {
+  background-color: #d1b7a3;
+}
+
+.footer {
+  margin-top: 10vh;
+}

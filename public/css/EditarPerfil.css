@@ -1,0 +1,106 @@
+/* Importa base */
+@import url('estilo.css');
+
+.cadastro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0; 
+  gap: 20px;
+}
+
+.cadastro form {
+  display: flex;
+  flex-direction: column; 
+  gap: 15px; 
+  background-color: #ECDCCE; 
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px; 
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.cadastro h2 {
+  text-align: center;
+  margin: 0;
+  color: #333;
+}
+
+.cadastro label {
+  font-weight: bold;
+  color: #555;
+}
+
+.cadastro input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Botões */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+
+.cadastro input[type="text"],
+.cadastro input[type="email"],
+.cadastro input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
+
+
+/*CAMPO SENHA COM OLHINHO*/
+.senha-container {
+  position: relative;
+}
+
+.senha-container .toggle-senha {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 24px;
+  user-select: none;
+}
+
+/*BOTÕES*/
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn-group button {
+  flex: 1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.btn-group .cancelar {
+  background-color: #8c5a41;
+  color: #fff;
+}
+
+.btn-group .salvar {
+  background-color: #a97c5d;
+  color: #fff;
+
+}
+

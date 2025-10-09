@@ -1,0 +1,91 @@
+/* Importa base */
+@import url('estilo.css');
+
+/* Conteúdo Histórico */
+.historico {
+  padding: 2rem;
+}
+
+.historico h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.pedido {
+  background: #ECDCCE;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.pedido img {
+  width: 120px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.pedido-info {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.pedido-info h3 {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.pedido-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.pedido-status p {
+  font-weight: bold;
+}
+
+.status {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: default;
+}
+
+/* Cores de status */
+.status.enviado {
+  background: #6c9e5c;
+  color: white;
+}
+.status.visualizado {
+  background: #8c6239;
+  color: white;
+}
+.status.negociacao {
+  background: #d4a017;
+  color: white;
+}
+.status.cancelado {
+  background: #a33;
+  color: white;
+}
+
+/* Botão recomprar */
+.recomprar {
+  background:#9D8576;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.recomprar:hover {
+  background:#D7BDA6;
+}
