@@ -9,49 +9,47 @@
   <link rel="stylesheet" href="{{asset('css/EditarPerfil.css') }}">
 </head>
 <body>
-
-         <!-- Navbar -->
-  <header class="navbar">
-    <div class="nav-content">
-      <!-- Logo -->
-      <div class="logo">
-        <a href="{{ route('home') }}" title="Home">
-          <img src="img/logo.png" alt="Marcenaria Conectada">
-        </a>
-      </div>
-      <div class="nav-icons">
-          <a href="{{ route('historico') }}" title="Histórico">
-            <span class="material-icons">assignment</span>
-          </a>
-          <a href="{{ route('carrinho') }}" title="Carrinho">
-            <span class="material-icons">shopping_cart</span>
-          </a>
-          <a href="{{ route('favoritos') }}" title="Favoritos">
-            <span class="material-icons">favorite</span>
-          </a>
-          <a href="{{ route('login') }}" title="Login">
-            <span class="material-icons">login</span>
-          </a>
-      </div>
+<!-- Navbar -->
+<header class="navbar">
+  <div class="nav-content">
+    <!-- Logo -->
+    <div class="logo">
+      <a href="home.html">
+        <img src="img/logo.png" alt="Marcenaria Conectada">
+      </a>
     </div>
-  </header>
 
-<!-- Formulário Editar Perfil -->
+    <!-- Ícones -->
+    <div class="nav-icons">
+      <a href="{{ route ('historicofabricante') }}" title="Histórico">
+        <span class="material-icons">assignment</span>
+      </a>
+      <a href="{{ route ('VisualizarFabricante') }}" title="Perfil">
+          <span class="material-icons">account_circle</span>
+      </a>
+      <a href="{{ route ('home') }}" title="home">
+          <span class="material-icons">logout</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+  <!-- Formulário Editar Perfil -->
   <section class="cadastro">
-    <h2>Editar Perfil</h2>
+    <h2>Atualizar meios de contato</h2>
     <form action="#" method="post">
-      <label for="nome">Nome Completo:</label>
-      <input type="text" id="nome" name="nome" value="Ana dos Santos" required>
+      <label for="nome">Instagram:</label>
+      <input type="text" id="nome" name="nome" value="Alexandre de Almeida Nascimento" required>
+
+        <label for="email">WhatsApp:</label>
+      <input type="email" id="email" name="email" value="5541992772292" required>
 
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" value="anadossantos@gmail.com" required>
+      <input type="email" id="email" name="email" value="alexandrealmeidanascimento@gmail.com" required>
 
-      <label for="cpf">CPF:</label>
-      <input type="text" id="cpf" name="cpf" value="123.456.789-00" required>
-
-      <label for="senha">Atualizar Senha:</label>
+            <label for="senha">Atualizar Senha:</label>
     <div class="senha-container">
-      <input type="password" id="senha" name="senha" placeholder="********" value="123456789" required>
+      <input type="password" id="senha" name="senha" placeholder="********" value="987654321" required>
       <span class="material-icons toggle-senha" onclick="toggleSenha('senha', this)">visibility</span>
     </div>
 
@@ -86,7 +84,7 @@
         </div>
 
   <!-- Script do olhinho da senha -->
-  <script>
+ <script>
     function toggleSenha(idCampo, icone) {
       const campo = document.getElementById(idCampo);
 

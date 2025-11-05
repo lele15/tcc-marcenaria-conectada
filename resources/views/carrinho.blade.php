@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="img/MR.png" type="image/x-icon">
 </head>
 <body>
-    
+
          <!-- Navbar -->
   <header class="navbar">
     <div class="nav-content">
@@ -32,8 +32,8 @@
           <a href="{{ route('login') }}" title="Login">
             <span class="material-icons">login</span>
           </a>
-          <a href="CadastroCliente.html" title="Cadastro">
-            <span class="material-icons">person_add</span>
+          <a href="{{ route ('VisualizarCliente') }}" title="Perfil">
+            <span class="material-icons">account_circle</span>
           </a>
       </div>
     </div>
@@ -48,7 +48,13 @@
             <img src="img/aparador.png" alt="Aparador">
             <div class="produto-info">
                 <strong>Aparador</strong>
-                <span>Móvel para quarto</span>
+                <span>Categoria: Sala</span>
+                <p></p>
+                <span>Descrição: Móvel rústico vintage e moderno</span>
+                <p></p>
+                <span>Medidas: 80 x 50 x 40</span>
+                <p></p>
+                <span>Fabricante: Alexandre de Almeida Nascimento</span>
             </div>
             <div class="quantidade">
                 <button class="menos">-</button>
@@ -64,7 +70,13 @@
             <img src="img/armario.png" alt="Armário">
             <div class="produto-info">
                 <strong>Armário</strong>
-                <span>Móvel rústico com portas ripadas</span>
+                <span>Categoria: Cozinha</span>
+                <p></p>
+                <span>Descrição: Móvel rústico com portas ripadas</span>
+                <p></p>
+                <span>Medidas: 180 x 60 x 40</span>
+                <p></p>
+                <span>Fabricante: Alexandre de Almeida Nascimento</span>
             </div>
             <div class="quantidade">
                 <button class="menos">-</button>
@@ -88,15 +100,21 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <h3>Redes Sociais</h3>
-        <div class="social-icons">
-            <a href="https://instagram.com/ale.snsc" target="_blank"><img src="img/insta.png" alt="Instagram"></a>
-            <a href="https://wa.me/5541992772292" target="_blank"><img src="img/whats.png" alt="WhatsApp"></a>
-            <a href="mailto:alessandrasilvanascimento1501@gmail.com" target="_blank"><img src="img/email.png" alt="Email"></a>
+        <div class="footer">
+            <h3>Redes Sociais</h3>
+            <div class="social-icons">
+                <a href="https://instagram.com/ale_moveis_rusticos" target="_blank">
+                <img src="img/insta.png" alt="Instagram">
+                </a>
+                <a href="https://wa.me/5541992772292" target="_blank">
+                <img src="img/whats.png" alt="WhatsApp">
+                </a>
+                <a href="mailto:alexandrealmeidanascimento@gmail.com">
+                <img src="img/email.png" alt="Email">
+                </a>
+            </div>
+                <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
         </div>
-        <p>Horário de atendimento:<br>segunda à sexta, das 8h às 18h</p>
-    </footer>
 
     <!-- Script do Carrinho -->
     <script>

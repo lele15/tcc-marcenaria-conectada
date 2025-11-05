@@ -27,79 +27,156 @@
           <a href="{{ route('visualizarfabricante') }}" title="Perfil do Fabricante">
             <span class="material-icons">account_circle</span>
           </a>
+        <a href="{{ route('home') }}" title="Home">
+            <span class="material-icons">logout</span>
+          </a>
       </div>
     </div>
   </header>
 
-        <!-- Formulário de Cadastro -->
-        <section class="cadastro">
-            <h2>Cadastrar Produto</h2>
-            <form action="#" method="post">
+     <!-- Formulário de Cadastro -->
+    <section class="cadastro">
+        <h2>Cadastrar Produto</h2>
+        <form action="#" method="post">
 
-                <label for="nome">Nome do produto:</label>
-                <input type="text" id="nome" name="nome" required>
-
-                <label for="email">Descrição:</label>
-                <textarea id="descricao" name="descricao" rows="3"></textarea>
-
-                <label for="categoria">Categoria:</label>
-                <select id="categoria" name="categoria">
+            <!-- Categoria e Nome do Produto -->
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="categoria" required>
                 <option value="">Selecione...</option>
-                <optgroup label="Ambientes">
-                    <option value="quarto">Quarto</option>
-                    <option value="sala-estar">Sala de Estar</option>
-                    <option value="cozinha">Cozinha</option>
-                    <option value="banheiro">Banheiro</option>
-                    <option value="area-externa">Área Externa</option>
-                    <option value="escritorio">Escritório</option>
-                </optgroup>
-                <optgroup label="Tipos de móveis">
-                    <option value="cama">Cama</option>
-                    <option value="mesa">Mesa</option>
-                    <option value="sofa">Sofá</option>
-                    <option value="armario">Armário</option>
-                    <option value="rack">Rack / Painel de TV</option>
-                    <option value="prateleira">Prateleira</option>
-                </optgroup>
-                <optgroup label="Outros">
-                    <option value="infantil">Infantil</option>
-                    <option value="pet">Pet</option>
-                    <option value="multiuso">Multiuso</option>
-                    <option value="decoração">Decoração</option></option>
-                    <option value="outro">Outro</option>
-                </optgroup>
-                </select>
+                <option value="quarto">Quarto</option>
+                <option value="cozinha">Cozinha</option>
+                <option value="sala">Sala</option>
+                <option value="banheiro">Banheiro</option>
+            </select>
 
-                <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco" step="0.01">
+            <label for="nome-produto">Nome do produto:</label>
+            <select id="nome-produto" name="nome-produto" required>
+                <option value="">Selecione a categoria primeiro</option>
+            </select>
 
-                <!-- Upload da Foto -->
-                <label for="foto" class="file-label">Foto:</label>
-                <input type="file" id="foto" name="foto" accept="image/*">
+            <button type="button" id="novo-produto-btn">Cadastrar novo produto</button>
+            <input type="text" id="novo-produto-input" name="novo-produto" placeholder="Digite o nome do produto" style="display:none;">
 
-                <!-- Botões -->
-                <div class="form-buttons">
-                    <button type="button" class="btn-cancelar">Cancelar</button>
-                    <button type="submit" class="btn-salvar">Salvar</button>
-                </div>
-            </form>
-        </section>
+            <!-- Descrição -->
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="3"></textarea>
 
-        <!-- Rodapé -->
-        <div class="footer">
-            <h3>Redes Sociais</h3>
-            <div class="social-icons">
-                <a href="https://instagram.com" target="_blank">
-                <img src="img/insta.png" alt="Instagram">
-                </a>
-                <a href="https://wa.me/5500000000000" target="_blank">
-                <img src="img/whats.png" alt="WhatsApp">
-                </a>
-                <a href="mailto:contato@exemplo.com">
-                <img src="img/email.png" alt="Email">
-                </a>
-            </div>
-                <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
+            <!-- Bloco de Medidas -->
+            <div id="medidas-container" style="display:none; margin-top:10px;">
+                <h4>Medidas do móvel</h4>
+                <div class="inputs-medidas">
+                    <div>
+                        <label for="altura">Altura (cm)</label>
+                        <input type="number" id="altura" name="altura" placeholder="Ex: 180">
+                    </div>
+            <div>
+            <label for="largura">Largura (cm)</label>
+            <input type="number" id="largura" name="largura" placeholder="Ex: 120">
+          </div>
+          <div id="campo-profundidade">
+            <label for="profundidade">Profundidade (cm)</label>
+            <input type="number" id="profundidade" name="profundidade" placeholder="Ex: 60">
+          </div>
         </div>
-    </body>
+      </div>
+
+      <!-- Preço -->
+      <label for="preco">Preço:</label>
+      <input type="number" id="preco" name="preco" step="0.01">
+
+      <!-- Upload da Foto -->
+      <label for="foto" class="file-label">Foto:</label>
+      <input type="file" id="foto" name="foto" accept="image/*">
+
+      <!-- Botões -->
+      <div class="form-buttons">
+        <button type="button" class="btn-cancelar">Cancelar</button>
+        <button type="submit" class="btn-salvar">Salvar</button>
+      </div>
+    </form>
+  </section>
+
+ <div class="footer">
+    <h3>Redes Sociais</h3>
+        <div class="social-icons">
+        <a href="https://instagram.com/ale.snsc" target="_blank">
+        <img src="img/insta.png" alt="Instagram">
+        </a>
+        <a href="https://wa.me/5541992772292" target="_blank">
+        <img src="img/whats.png" alt="WhatsApp">
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alessandrasilvanascimento1501@gmail.com" target="_blank">
+        <img src="img/email.png" alt="Email">
+        </a>
+
+        /div>
+        <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
+        </div>
+
+<script>
+    const produtosPorCategoria = {
+      "quarto": ["Guarda-roupa", "Cômoda", "Criado-mudo", "Penteadeira", "Cabeceira", "Sapateira", "Nicho"],
+      "cozinha": ["Armário", "Balcão", "Gabinete de pia", "Bancada", "Cristaleira", "Mesa", "Cadeira"],
+      "sala": ["Rack", "Painel de TV", "Estante", "Aparador"],
+      "banheiro": ["Gabinete de banheiro", "Nicho de parede", "Prateleira"]
+    };
+
+    const categoriaSelect = document.getElementById("categoria");
+    const nomeProdutoSelect = document.getElementById("nome-produto");
+    const novoProdutoBtn = document.getElementById("novo-produto-btn");
+    const novoProdutoInput = document.getElementById("novo-produto-input");
+    const medidasContainer = document.getElementById("medidas-container");
+    const campoProfundidade = document.getElementById("campo-profundidade");
+
+    const movelTemProfundidade = [
+      "guarda-roupa","cômoda","criado-mudo","penteadeira","sapateira",
+      "nicho","rack","estante","aparador","cadeira","cristaleira",
+      "armário","balcão","gabinete-de-pia","bancada","escrivaninha",
+      "gabinete-de-banheiro","nicho-de-parede"
+    ];
+
+    // Popula select de produtos conforme categoria
+    categoriaSelect.addEventListener("change", function () {
+      const categoria = this.value;
+      nomeProdutoSelect.innerHTML = '<option value="">Selecione...</option>';
+
+      if (categoria && produtosPorCategoria[categoria]) {
+        produtosPorCategoria[categoria].forEach(produto => {
+          const option = document.createElement("option");
+          option.value = produto.toLowerCase().replace(/\s+/g, "-");
+          option.textContent = produto;
+          nomeProdutoSelect.appendChild(option);
+        });
+        nomeProdutoSelect.style.display = "inline-block";
+        novoProdutoInput.style.display = "none";
+      } else {
+        nomeProdutoSelect.style.display = "none";
+      }
+
+      medidasContainer.style.display = "block";
+      campoProfundidade.style.display = "none"; // espera seleção do produto
+    });
+
+    // Atualiza profundidade quando um produto é selecionado
+    nomeProdutoSelect.addEventListener("change", function() {
+      const produto = this.value;
+      if (movelTemProfundidade.includes(produto)) {
+        campoProfundidade.style.display = "block";
+      } else {
+        campoProfundidade.style.display = "none";
+      }
+    });
+
+    // Mostrar input para cadastrar novo produto
+    novoProdutoBtn.addEventListener("click", () => {
+      nomeProdutoSelect.style.display = "none";
+      novoProdutoInput.style.display = "inline-block";
+      medidasContainer.style.display = "block";
+      campoProfundidade.style.display = "block"; // mostra profundidade para produto manual
+      novoProdutoInput.focus();
+    });
+</script>
+
+
+</body>
 </html>

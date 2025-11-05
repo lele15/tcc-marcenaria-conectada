@@ -42,4 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function fabricante (){
+        return $this->hasMany('App/Models/Fabricante');
+    }
+    public function cliente (){
+        return $this->hasMany('App/Models/Cliente');
+    }
 }
