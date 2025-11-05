@@ -176,7 +176,7 @@
                 <br>
                 <span>Fabricante: Alexandre de Almeida Nascimento</span>
                 <br>
-                <span>Preço: 199,00</span>
+                <span>Preço: 200,00</span>
                 <p></p>
             <div class="actions">
                     <span class="material-icons favorito" onclick="toggleFavorito(this)">favorite_border</span>
