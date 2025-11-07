@@ -21,15 +21,18 @@
 
     <!-- Ícones -->
     <div class="nav-icons">
-      <a href="{{ route ('historicofabricante') }}" title="Histórico">
-        <span class="material-icons">assignment</span>
-      </a>
-      <a href="{{ route ('VisualizarFabricante') }}" title="Perfil">
-          <span class="material-icons">account_circle</span>
-      </a>
-      <a href="{{ route ('home') }}" title="home">
-          <span class="material-icons">logout</span>
-      </a>
+        <a href="{{ route ('historicofabricante') }}" title="Histórico">
+            <span class="material-icons">assignment</span>
+        </a>
+        <a href="{{ route ('PainelFabricante')}}" title="Painel do Fabricante">
+            <span class="material-icons">grid_view</span>
+        </a>
+        <a href="{{ route ('VisualizarFabricante') }}" title="Perfil">
+            <span class="material-icons">account_circle</span>
+        </a>
+        <a href="{{ route ('home') }}" title="home">
+            <span class="material-icons">logout</span>
+        </a>
     </div>
   </div>
 </header>

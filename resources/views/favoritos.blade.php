@@ -31,13 +31,11 @@
                 <a href="{{ route('favoritos') }}" title="Favoritos">
                 <span class="material-icons">favorite</span>
                 </a>
-                <a href="{{ route('login') }}" title="Login">
-                <span class="material-icons">login</span>
-                </a>
                 <a href="{{ route('vizualizarcliente') }}" title="VizualizarCliente">
                 <span class="material-icons">account_circle</span>
                 </a>
-
+                <a href="{{ route ('home') }}" title="home">
+                <span class="material-icons">logout</span>
                 </a>
             </div>
         </div>

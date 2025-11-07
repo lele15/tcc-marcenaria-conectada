@@ -21,8 +21,11 @@
                 </a>
             </div>
             <div class="nav-icons">
-                <a href="{{ route('historico') }}" title="Histórico">
+                <a href="{{ route('historicofabricante') }}" title="Histórico">
                     <span class="material-icons">assignment</span>
+                </a>
+                <a href="{{ route ('PainelFabricante')}}" title="Painel do Fabricante">
+                    <span class="material-icons">grid_view</span>
                 </a>
                 <a href="{{ route('visualizarfabricante') }}" title="Perfil do Fabricante">
                     <span class="material-icons">account_circle</span>

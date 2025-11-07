@@ -60,16 +60,20 @@
 </div>
 
 <!-- Footer -->
-<div class="footer">
-  <h3>Redes Sociais</h3>
-  <div class="social-icons">
-    <a href="https://instagram.com/ale.snsc" target="_blank"><img src="img/insta.png" alt="Instagram"></a>
-    <a href="https://wa.me/5541992772292" target="_blank"><img src="img/whats.png" alt="WhatsApp"></a>
-    <a href="mailto:alessandrasilvanascimento1501@gmail.com" target="_blank"><img src="img/email.png" alt="Email"></a>
-  </div>
-  <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
-</div>
-
-
+ <div class="footer">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/ale_moveis_rusticos" target="_blank">
+                    <img src="img/insta.png" alt="Instagram">
+                    </a>
+                    <a href="https://wa.me/5541992772292" target="_blank">
+                    <img src="img/whats.png" alt="WhatsApp">
+                    </a>
+                    <a href="mailto:alexandrealmeidanascimento@gmail.com">
+                    <img src="img/email.png" alt="Email">
+                    </a>
+                </div>
+                    <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
+        </div>
 </body>
 </html>

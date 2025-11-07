@@ -23,18 +23,15 @@
           <a href="{{ route('historico') }}" title="Histórico">
             <span class="material-icons">assignment</span>
           </a>
-          <a href="{{ route('carrinho') }}" title="Carrinho">
-            <span class="material-icons">shopping_cart</span>
-          </a>
           <a href="{{ route('favoritos') }}" title="Favoritos">
             <span class="material-icons">favorite</span>
           </a>
-          <a href="{{ route('login') }}" title="Login">
-            <span class="material-icons">login</span>
-          </a>
-          <a href="{{ route ('VisualizarCliente') }}" title="Perfil">
+          <a href="{{ route ('visualizarcliente') }}" title="Perfil">
             <span class="material-icons">account_circle</span>
           </a>
+        <a href="{{ route ('home') }}" title="home">
+                <span class="material-icons">logout</span>
+                </a>
       </div>
     </div>
   </header>

@@ -46,7 +46,16 @@
         </div>
         <img src="img/armario.png" alt="Armario">
         <h3>Armário</h3>
-        <p>Móvel rústico com portas ripadas</p>
+        <span>Categoria: Sala</span>
+          <br>
+          <span>Rústico com portas ripadas</span>
+          <br>
+          <span>Medidas: 180 x 60 x 40</span>
+          <br>
+          <span>Fabricante: Alexandre de Almeida Nascimento</span>
+          <br>
+          <span>Preço: 1500,00</span>
+          <p></p>
         <button class="btn">ativar</button>
       </div>
 
@@ -61,22 +70,40 @@
         </div>
         <img src="img/mesa.png" alt="Mesa">
         <h3>Mesa</h3>
-        <p>Moderna e desconstruída</p>
+       <span>Categoria: Cozinha</span>
+          <br>
+          <span>Mesa de jantar moderna</span>
+          <br>
+          <span>Medidas: 80 x 40</span>
+          <br>
+          <span>Fabricante: Alexandre de Almeida Nascimento</span>
+          <br>
+          <span>Preço: 1500,00</span>
+          <p></p>
         <button class="btn desativar">desativar</button>
       </div>
 
-      <!-- Produto 3 -->
+<!-- Produto 3 -->
       <div class="product-card">
         <div class="menu">
           <span class="material-icons">more_vert</span>
           <div class="dropdown">
-            <a href="{{ route('editarproduto') }}" title="Editar Produto">Editar</a>
+            <a href="EditarProduto.html" class="edit-link">Editar</a>
             <button class="delete-btn">Excluir</button>
           </div>
         </div>
         <img src="img/cristaleira.png" alt="Cristaleira">
         <h3>Cristaleira</h3>
-        <p>Vintage e linda</p>
+       <span>Categoria: Cozinha</span>
+              <br>
+              <span>Móvel rústico vintage</span>
+              <br>
+              <span>Medidas: 180 x 60 x 45</span>
+              <br>
+              <span>Fabricante: Alexandre de Almeida Nascimento</span>
+              <br>
+              <span>Preço: 800,00</span>
+              <p></p>
         <button class="btn">ativar</button>
       </div>
 
@@ -85,13 +112,22 @@
         <div class="menu">
           <span class="material-icons">more_vert</span>
           <div class="dropdown">
-            <a href="{{ route('editarproduto') }}" title="Editar Produto">Editar</a>
+            <a href="EditarProduto.html" class="edit-link">Editar</a>
             <button class="delete-btn">Excluir</button>
           </div>
         </div>
         <img src="img/cadeira.png" alt="Cadeira">
         <h3>Cadeira</h3>
-        <p>Rústica e moderna</p>
+        <span>Categoria: Sala</span>
+            <br>
+            <span>Cadeira rústica e moderna</span>
+            <br>
+            <span>Medidas: 100 x 45</span>
+            <br>
+            <span>Fabricante: Alexandre de Almeida Nascimento</span>
+            <br>
+            <span>Preço: 199,00</span>
+            <p></p>
         <button class="btn desativar">desativar</button>
       </div>
 
@@ -100,13 +136,22 @@
         <div class="menu">
           <span class="material-icons">more_vert</span>
           <div class="dropdown">
-            <a href="{{ route('editarproduto') }}" title="Editar Produto">Editar</a>
+            <a href="EditarProduto.html" class="edit-link">Editar</a>
             <button class="delete-btn">Excluir</button>
           </div>
         </div>
         <img src="img/aparador.png" alt="Aparador">
         <h3>Aparador</h3>
-        <p>Móvel para quarto</p>
+        <span>Categoria: Sala</span>
+                <br>
+                <span>Rústico vintage e moderno</span>
+                <br>
+                <span>Medidas: 80 x 50 x 40</span>
+                <br>
+                <span>Fabricante: Alexandre de Almeida Nascimento</span>
+                <br>
+                <span>Preço: 500,00</span>
+                <p></p>
         <button class="btn">ativar</button>
       </div>
 
@@ -118,21 +163,21 @@
   </main>
 
   <!-- Rodapé -->
-  <div class="footer">
-    <h3>Redes Sociais</h3>
-    <div class="social-icons">
-      <a href="https://instagram.com/ale.snsc" target="_blank">
-        <img src="img/insta.png" alt="Instagram">
-      </a>
-      <a href="https://wa.me/5541992772292" target="_blank">
-        <img src="img/whats.png" alt="WhatsApp">
-      </a>
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alessandrasilvanascimento1501@gmail.com" target="_blank">
-        <img src="img/email.png" alt="Email">
-      </a>
-    </div>
-    <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
-  </div>
+ <div class="footer">
+                <h3>Redes Sociais</h3>
+                <div class="social-icons">
+                    <a href="https://instagram.com/ale_moveis_rusticos" target="_blank">
+                    <img src="img/insta.png" alt="Instagram">
+                    </a>
+                    <a href="https://wa.me/5541992772292" target="_blank">
+                    <img src="img/whats.png" alt="WhatsApp">
+                    </a>
+                    <a href="mailto:alexandrealmeidanascimento@gmail.com">
+                    <img src="img/email.png" alt="Email">
+                    </a>
+                </div>
+                    <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
+        </div>
 
   <script>
     // ================== ATIVAR / DESATIVAR ==================
@@ -169,7 +214,7 @@
     // ================== BOTÃO + PARA CADASTRO ==================
     const addButton = document.querySelector('.product-card.add-new span');
     if(addButton){
-      addButton.addEventListener('click', () => {
+      addButton.addEvena dos Santos<ntListener('click', () => {
         window.location.href = 'cadastrarproduto'; // link da tela de cadastro
       });
     }
