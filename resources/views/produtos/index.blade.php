@@ -35,129 +35,38 @@
     <h2>Galeria de Produtos do fabricante</h2>
 
     <div class="product-gallery">
+
+@foreach ($produtos as $item )
       <!-- Produto 1 -->
       <div class="product-card">
         <div class="menu">
           <span class="material-icons">more_vert</span>
           <div class="dropdown">
-            <a href="{{ route('editarproduto') }}" title="Editar Produto">Editar</a>
+        <a href="{{ route('produtos.edit', $item->id) }}" title="Editar Produto">Editar</a>
             <button class="delete-btn">Excluir</button>
           </div>
         </div>
         <img src="img/armario.png" alt="Armario">
-        <h3>Armário</h3>
-        <span>Categoria: Sala</span>
+        <h3>{{$item->nome}}</h3>
+        <span>Categoria:{{$item->categoria}}</span>
           <br>
-          <span>Rústico com portas ripadas</span>
+          <span>Descrição:{{ $item->descricao }}</span>
           <br>
-          <span>Medidas: 180 x 60 x 40</span>
+          <span>Medidas: {{ $item->altura }} x {{ $item->largura }} x {{ $item->profundidade }}</span>
           <br>
-          <span>Fabricante: Alexandre de Almeida Nascimento</span>
+          <span>Fabricante: {{ $item->fabricante->nome }}</span>
           <br>
-          <span>Preço: 1500,00</span>
+          <span>Preço: {{ $item->preco }}</span>
           <p></p>
         <button class="btn">ativar</button>
       </div>
-
-      <!-- Produto 2 -->
-      <div class="product-card">
-        <div class="menu">
-          <span class="material-icons">more_vert</span>
-          <div class="dropdown">
-            <a href="{{ route('editarproduto') }}" title="Editar Produto">Editar</a>
-            <button class="delete-btn">Excluir</button>
-          </div>
-        </div>
-        <img src="img/mesa.png" alt="Mesa">
-        <h3>Mesa</h3>
-       <span>Categoria: Cozinha</span>
-          <br>
-          <span>Mesa de jantar moderna</span>
-          <br>
-          <span>Medidas: 80 x 40</span>
-          <br>
-          <span>Fabricante: Alexandre de Almeida Nascimento</span>
-          <br>
-          <span>Preço: 1500,00</span>
-          <p></p>
-        <button class="btn desativar">desativar</button>
-      </div>
-
-<!-- Produto 3 -->
-      <div class="product-card">
-        <div class="menu">
-          <span class="material-icons">more_vert</span>
-          <div class="dropdown">
-            <a href="EditarProduto.html" class="edit-link">Editar</a>
-            <button class="delete-btn">Excluir</button>
-          </div>
-        </div>
-        <img src="img/cristaleira.png" alt="Cristaleira">
-        <h3>Cristaleira</h3>
-       <span>Categoria: Cozinha</span>
-              <br>
-              <span>Móvel rústico vintage</span>
-              <br>
-              <span>Medidas: 180 x 60 x 45</span>
-              <br>
-              <span>Fabricante: Alexandre de Almeida Nascimento</span>
-              <br>
-              <span>Preço: 800,00</span>
-              <p></p>
-        <button class="btn">ativar</button>
-      </div>
-
-      <!-- Produto 4 -->
-      <div class="product-card">
-        <div class="menu">
-          <span class="material-icons">more_vert</span>
-          <div class="dropdown">
-            <a href="EditarProduto.html" class="edit-link">Editar</a>
-            <button class="delete-btn">Excluir</button>
-          </div>
-        </div>
-        <img src="img/cadeira.png" alt="Cadeira">
-        <h3>Cadeira</h3>
-        <span>Categoria: Sala</span>
-            <br>
-            <span>Cadeira rústica e moderna</span>
-            <br>
-            <span>Medidas: 100 x 45</span>
-            <br>
-            <span>Fabricante: Alexandre de Almeida Nascimento</span>
-            <br>
-            <span>Preço: 199,00</span>
-            <p></p>
-        <button class="btn desativar">desativar</button>
-      </div>
-
-      <!-- Produto 5 -->
-      <div class="product-card">
-        <div class="menu">
-          <span class="material-icons">more_vert</span>
-          <div class="dropdown">
-            <a href="EditarProduto.html" class="edit-link">Editar</a>
-            <button class="delete-btn">Excluir</button>
-          </div>
-        </div>
-        <img src="img/aparador.png" alt="Aparador">
-        <h3>Aparador</h3>
-        <span>Categoria: Sala</span>
-                <br>
-                <span>Rústico vintage e moderno</span>
-                <br>
-                <span>Medidas: 80 x 50 x 40</span>
-                <br>
-                <span>Fabricante: Alexandre de Almeida Nascimento</span>
-                <br>
-                <span>Preço: 500,00</span>
-                <p></p>
-        <button class="btn">ativar</button>
-      </div>
+@endforeach
 
       <!-- Card de adicionar -->
       <div class="product-card add-new">
-        <span class="material-icons">add</span>
+        <a href="{{ route('produtos.create') }}" title="Cadastrar Produto">
+            <span class="material-icons">add</span>
+        </a>
       </div>
     </div>
   </main>

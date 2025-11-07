@@ -33,9 +33,7 @@
           <a href="{{ route('login') }}" title="Login">
             <span class="material-icons">login</span>
           </a>
-          <a href="{{ route('cadastrocliente')}}" title="Cadastro">
-            <span class="material-icons">person_add</span>
-          </a>
+
       </div>
     </div>
   </header>
