@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produto;
 
 class HomeController extends Controller
 {
@@ -26,8 +27,10 @@ class HomeController extends Controller
         return view('favoritos');
     }
 
-    public function painel() {
-        return view('painel');
+    public function painel(){
+
+        $produtos = Produto::all();
+        return view('painel', compact('produtos'));
     }
 
     public function visualizarcliente() {

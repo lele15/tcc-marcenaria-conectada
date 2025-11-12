@@ -90,8 +90,8 @@ body {
 }
 
 .footer .social-icons img {
-  width: 40px;   /* tamanho fixo */
-  height: 40px;  /* deixa tudo igual */
+  width: 10px;   /* tamanho fixo */
+  height: 10px;  /* deixa tudo igual */
   object-fit: contain; /* não deixa a foto distorcer */
   cursor: pointer;
   transition: transform 0.2s ease;

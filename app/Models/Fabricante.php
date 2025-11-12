@@ -12,9 +12,9 @@ class Fabricante extends Model
     use SoftDeletes;
 
     public function user(){
-        return $this->belongsTo('App/Models/User');
+        return $this->belongsTo('App\Models\User');
     }
     public function produto (){
-        return $this->hasMany('App/Models/Produto');
+        return $this->hasMany('App\Models\Produto');
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nome');
             $table->string('descricao');
             $table->float('preco');
-            $table->string('imagem');
+            $table->string('foto')->nullable();
             $table->boolean('ativo');
             $table->string('categoria');
             $table->integer('altura');

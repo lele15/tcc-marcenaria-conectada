@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use Monolog\Handler\FingersCrossed\ActivationStrategyInterface;
 
 class ProdutoController extends Controller
 {
@@ -12,7 +13,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::all();
+        $produtos = Produto::where('ativo', 1)->get();
         return view('produtos.index', compact('produtos'));
 
     }
@@ -20,9 +21,8 @@ class ProdutoController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('produtos.create');
     }
 
     /**
@@ -30,7 +30,35 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produto = new Produto();
+
+
+        $produto->nome = mb_strtoupper($request->nome, 'UTF-8');
+        $produto->descricao = mb_strtoupper($request->descricao, 'UTF-8');
+        $produto->preco = $request->preco;
+        $produto->categoria = mb_strtoupper($request->categoria, 'UTF-8');
+        $produto->altura = $request->altura;
+        $produto->largura = $request->largura;
+        if($request->profundidade){
+            $produto->profundidade = $request->profundidade;
+        }
+        else{
+            $produto->profundidade = 0;
+        }
+        $produto->ativo = 1;
+        $produto->fabricante_id = 1;
+        $produto->save();
+
+        if($request->hasFile('foto')) {
+            // Upload File
+            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+            $name = $produto->id.'_'.time().'.'.$extensao_arq;
+            $request->file('foto')->storeAs('fotos', $name, ['disk' => 'public']);
+            $produto->foto = 'fotos/'.$name;
+            $produto->save();
+        }
+
+        return redirect()->route('painel');
     }
 
     /**

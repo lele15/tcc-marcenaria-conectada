@@ -12,12 +12,12 @@ class Produto extends Model
     use SoftDeletes;
 
     public function fabricante(){
-        return $this->belongsTo('App/Models/Fabricante');
+        return $this->belongsTo('App\Models\Fabricante');
     }
     public function cliente (){
-        return $this->belongsToMany('App/Models/Cliente', 'favoritos');
+        return $this->belongsToMany('App\Models\Cliente', 'favoritos');
     }
     public function pedido (){
-        return $this->belongsToMany('App/Models/Pedido', 'produto_pedidos');
+        return $this->belongsToMany('App\Models\Pedido', 'produto_pedidos');
     }
 }
