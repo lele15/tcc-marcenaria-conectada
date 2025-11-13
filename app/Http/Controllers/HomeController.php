@@ -8,7 +8,8 @@ use App\Models\Produto;
 class HomeController extends Controller
 {
     public function index() {
-        return view('home');
+        $produtos = Produto::where('ativo', 1)->get();
+        return view('home', compact('produtos'));
     }
 
     public function login() {

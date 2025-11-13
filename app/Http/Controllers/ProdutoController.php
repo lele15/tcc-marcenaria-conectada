@@ -58,7 +58,7 @@ class ProdutoController extends Controller
             $produto->save();
         }
 
-        return redirect()->route('painel');
+        return redirect()->route('produtos.index');
     }
 
     /**
@@ -74,7 +74,13 @@ class ProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $produto= Produto::find($id);
+
+        if(isset($produto)) {
+            return view('produtos.edit', compact('produto'));
+        }
+
+        return redirect()->route('produtos.index');
     }
 
     /**
@@ -82,7 +88,37 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $produto= Produto::find($id);
+
+        if(isset($produto)) {
+            
+            $produto->nome = mb_strtoupper($request->nome, 'UTF-8');
+            $produto->descricao = mb_strtoupper($request->descricao, 'UTF-8');
+            $produto->preco = $request->preco;
+            $produto->categoria = mb_strtoupper($request->categoria, 'UTF-8');
+            $produto->altura = $request->altura;
+            $produto->largura = $request->largura;
+            if($request->profundidade){
+                $produto->profundidade = $request->profundidade;
+            }
+            else{
+                $produto->profundidade = 0;
+            }
+
+            $produto->save();
+
+            if($request->hasFile('foto')) {
+            // Upload File
+            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+            $name = $produto->id.'_'.time().'.'.$extensao_arq;
+            $request->file('foto')->storeAs('fotos', $name, ['disk' => 'public']);
+            $produto->foto = 'fotos/'.$name;
+            $produto->save();
+        }
+        }
+
+        return redirect()->route('produtos.index');
     }
 
     /**
@@ -90,6 +126,12 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $produto= Produto::find($id);
+
+        if(isset($produto)) {
+            $produto->delete();
+        }
+
+        return redirect()->route('produtos.index');
     }
 }

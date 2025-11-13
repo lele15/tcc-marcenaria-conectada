@@ -37,7 +37,7 @@
             <!-- Formulário de Cadastro -->
         <section class="cadastro">
             <h2>Cadastrar Produto</h2>
-            <form action="{{route('produtos.store')}}" method="post" enctype="multipart/form-data">>
+            <form action="{{route('produtos.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <!-- Categoria e Nome do Produto -->
                 <label for="categoria">Categoria:</label>
@@ -53,8 +53,7 @@
                 <select id="nome-produto" name="nome" required>
                     <option value="">Selecione a categoria primeiro</option>
                 </select>
-                <button type="button" id="novo-produto-btn">Cadastrar novo produto</button>
-                <input type="text" id="novo-produto-input" name="novo-produto" placeholder="Digite o nome do produto" style="display:none;">
+    
 
                 <!-- Descrição -->
                 <label for="descricao">Descrição:</label>
@@ -87,7 +86,7 @@
                 <input type="file" id="foto" name="foto" accept="image/*">
                 <!-- Botões -->
                 <div class="form-buttons">
-                    <a href="{{route('painel')}}" class="btn-cancelar" style="text-decoration: none;">Cancelar</a>
+                    <a href="{{route('produtos.index')}}" class="btn-cancelar" style="text-decoration: none;">Cancelar</a>
                     <button type="submit" class="btn-salvar">Salvar</button>
                 </div>
             </form>
@@ -103,8 +102,6 @@
 
             const categoriaSelect = document.getElementById("categoria");
             const nomeProdutoSelect = document.getElementById("nome-produto");
-            const novoProdutoBtn = document.getElementById("novo-produto-btn");
-            const novoProdutoInput = document.getElementById("novo-produto-input");
             const medidasContainer = document.getElementById("medidas-container");
             const campoProfundidade = document.getElementById("campo-profundidade");
 
@@ -128,7 +125,6 @@
                 nomeProdutoSelect.appendChild(option);
                 });
                 nomeProdutoSelect.style.display = "inline-block";
-                novoProdutoInput.style.display = "none";
             } else {
                 nomeProdutoSelect.style.display = "none";
             }
@@ -145,15 +141,6 @@
             } else {
                 campoProfundidade.style.display = "none";
             }
-            });
-
-            // Mostrar input para cadastrar novo produto
-            novoProdutoBtn.addEventListener("click", () => {
-            nomeProdutoSelect.style.display = "none";
-            novoProdutoInput.style.display = "inline-block";
-            medidasContainer.style.display = "block";
-            campoProfundidade.style.display = "block"; // mostra profundidade para produto manual
-            novoProdutoInput.focus();
             });
         </script>
     </body>

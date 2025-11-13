@@ -51,7 +51,16 @@
         <span>Preço: {{ $item->preco }}</span>
         <p></p>
         <a href="{{route('produtos.edit', $item->id)}}" class="edit-btn" style="text-decoration: none;"><span class="material-icons">edit</span></a>
-        <a href="{{route('produtos.destroy', $item->id)}}" class="delete-btn" style="text-decoration: none;"><span class="material-icons">delete</span></a>
+        
+        <form action="{{route('produtos.destroy', $item->id)}}" method="post" style="display: inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="delete-btn" style="text-decoration: none;">
+              <span class="material-icons">delete</span>
+            </button>                
+        </form>
+
+
         <button class="btn">ativar</button>
       </div>
     @endforeach
@@ -80,57 +89,5 @@
     </div>
     <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
   </div>
-
-  <script>
-    // ================== ATIVAR / DESATIVAR ==================
-    document.querySelectorAll('.product-card .btn').forEach(button => {
-      button.addEventListener('click', () => {
-        if(button.textContent.toLowerCase() === 'ativar'){
-          button.textContent = 'desativar';
-          button.classList.add('desativar');
-          button.classList.remove('ativar');
-        } else {
-          button.textContent = 'ativar';
-          button.classList.add('ativar');
-          button.classList.remove('desativar');
-        }
-      });
-    });
-
-    // ================== MENU TRÊS PONTOS ==================
-    document.querySelectorAll('.product-card .menu span').forEach(icon => {
-      icon.addEventListener('click', (e) => {
-        e.stopPropagation(); // evita fechar imediatamente
-        const dropdown = icon.nextElementSibling;
-        dropdown.classList.toggle('show');
-      });
-    });
-
-    // FECHAR MENU AO CLICAR FORA
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.product-card .dropdown').forEach(drop => {
-        drop.classList.remove('show');
-      });
-    });
-
-    // ================== BOTÃO + PARA CADASTRO ==================
-    /*const addButton = document.querySelector('.product-card.add-new span');
-    if(addButton){
-      addButton.addEventListener('click', () => {
-        window.location.href = 'CadastroProduto.html'; // link da tela de cadastro
-      });
-    }*/
-
-    // ================== EXCLUIR PRODUTO ==================
-    document.querySelectorAll(".delete-btn").forEach(button => {
-      button.addEventListener("click", function() {
-        const productCard = this.closest(".product-card");
-        if (productCard) {
-          productCard.remove();
-          alert("Produto excluído!");
-        }
-      });
-    });
-  </script>
 </body>
 </html>
