@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
             "name" => "ALEXANDRE DE ALMEIDA NASCIMENTO",
             "email" => 'alexandrealmeidanascimento@gmail.com',
             "password" => Hash::make('aleana@123'),
+            "papel" => 'FABRICANTE',
+            "cpf" => '12.345.698/0001-98',
         ];
 
         DB::table('users')->insert($data);

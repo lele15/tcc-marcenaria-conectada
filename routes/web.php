@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/historico', [HomeController::class, 'historico'])->name('historico');
-Route::get('/carrinho', [HomeController::class, 'carrinho'])->name('carrinho');
-Route::get('/favoritos', [HomeController::class, 'favoritos'])->name('favoritos');
+Route::get('/carrinho', [HomeController::class, 'carrinho'])->name('carrinho')->middleware(['auth', 'verified']);
+Route::get('/favoritos', [HomeController::class, 'favoritos'])->name('favoritos')->middleware(['auth', 'verified']);
 Route::get('/visualizarcliente', [HomeController::class, 'visualizarcliente'])->name('visualizarcliente');
 Route::get('/visualizarfabricante', [HomeController::class, 'visualizarfabricante'])->name('visualizarfabricante');
 Route::get('/login', [HomeController::class, 'login'])->name('login');

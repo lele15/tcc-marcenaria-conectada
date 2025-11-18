@@ -15,23 +15,24 @@
         <div class="nav-content">
             <!-- Logo -->
             <div class="logo">
-            <a href="{{ route('home') }}" title="Home">
-                <img src="img/logo.png" alt="Marcenaria Conectada">
-            </a>
-            </div>
-                <a href="{{ route('carrinho') }}" title="Carrinho">
-                <span class="material-icons">shopping_cart</span>
+                <a href="{{ route('home') }}" title="Home">
+                    <img src="img/logo.png" alt="Marcenaria Conectada">
                 </a>
-                <a href="{{ route('favoritos') }}" title="Favoritos">
-                <span class="material-icons">favorite</span>
-                </a>
-            <a href="{{ route ('visualizarcliente') }}" title="Perfil">
-                <span class="material-icons">account_circle</span>
-            </a>
-            <a href="{{ route ('home') }}" title="Home">
-                <span class="material-icons">logout</span>
-            </a><!--FALAR COM GIL PQ N ÉPRA SER UMA ROTA E SIM DESLOGAR -->
             </div>
+
+                    <a href="{{ route('carrinho') }}" title="Carrinho">
+                    <span class="material-icons">shopping_cart</span>
+                    </a>
+                    <a href="{{ route('favoritos') }}" title="Favoritos">
+                    <span class="material-icons">favorite</span>
+                    </a>
+                    <a href="{{ route ('visualizarcliente') }}" title="Perfil">
+                        <span class="material-icons">account_circle</span>
+                    </a>
+                    <a href="{{ route ('home') }}" title="Home">
+                        <span class="material-icons">logout</span>
+                    </a><!--FALAR COM GIL PQ N ÉPRA SER UMA ROTA E SIM DESLOGAR -->
+                </div>
         </div>
     </header>
 

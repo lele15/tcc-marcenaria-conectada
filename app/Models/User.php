@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cpf',
+        'papel',
     ];
 
     /**
@@ -48,5 +50,12 @@ class User extends Authenticatable
     }
     public function cliente (){
         return $this->hasMany('App/Models/Cliente');
+    }
+
+    public function produto (){
+        return $this->belongsToMany('App/Models/Produto', 'favoritos');
+    }
+    public function pedido (){
+        return $this->hasMany('App/Models/Pedido');
     }
 }

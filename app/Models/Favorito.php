@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Favorito extends Model
 {
     use HasFactory;
-    public function cliente (){
-        return $this->belongsTo('App/Models/Cliente');
+    public function user (){
+        return $this->belongsTo('App/Models/User');
     }
     public function produto (){
         return $this->belongsTo('App/Models/Produto');

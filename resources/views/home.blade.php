@@ -11,37 +11,47 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-        <!-- Navbar -->
-  <header class="navbar">
-    <div class="nav-content">
-      <!-- Logo -->
-      <div class="logo">
-        <a href="{{ route('home') }}" title="Home">
-          <img src="img/logo.png" alt="Marcenaria Conectada">
-        </a>
-      </div>
-      <div class="nav-icons">
-          <a href="{{ route('historico') }}" title="Histórico">
-            <span class="material-icons">assignment</span>
-          </a>
-          <a href="{{ route('carrinho') }}" title="Carrinho">
-            <span class="material-icons">shopping_cart</span>
-          </a>
-          <a href="{{ route('favoritos') }}" title="Favoritos">
-            <span class="material-icons">favorite</span>
-          </a>
-          
-          <a href="{{ route('login') }}" title="Login">
-              <span class="material-icons">login</span>
-          </a>
-          
-          <a href="{{ route('register') }}" title="Login">
-            <span class="material-icons">person_add</span>
-          </a>
 
-      </div>
-    </div>
-  </header>
+ <header class="navbar">
+        <div class="nav-content">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{{ route('home') }}" title="Home">
+                    <img src="img/logo.png" alt="Marcenaria Conectada">
+                </a>
+                </div>
+
+            <div class="nav-icons">
+            @auth
+                <a href="{{ route('historico') }}" title="Histórico">
+                    <span class="material-icons">assignment</span>
+                </a>
+                <a href="{{ route('carrinho') }}" title="Carrinho">
+                    <span class="material-icons">shopping_cart</span>
+                </a>
+                <a href="{{ route('favoritos') }}" title="Favoritos">
+                <span class="material-icons">favorite</span>
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a onclick="event.preventDefault(); this.closest('form').submit();" title="Logout">
+                        <span class="material-icons">logout</span>
+                    </a>
+                </form>
+            @endauth
+            @guest
+                <a href="{{ route('login') }}" title="Login">
+                    <span class="material-icons">login</span>
+                </a>
+
+                <a href="{{ route('register') }}" title="Login">
+                    <span class="material-icons">person_add</span>
+                </a>
+            @endguest
+            </div>
+        </div>
+    </header>
+
 
   <!-- Hero / título -->
   <section class="hero">
@@ -66,12 +76,14 @@
             <span>Preço: {{ $item->preco }}</span>
             <p></p>
                 <div class="actions">
-                    <span class="material-icons favorito" onclick="toggleFavorito(this)">favorite_border</span>
-                    <button>Adicionar ao carrinho</button>
+                    <a href="{{route('favoritos')}}">
+                        <span class="material-icons favorito">favorite_border</span>
+                    </a>
+                    <a href="{{route('carrinho')}}">Adicionar ao carrinho</a>
                 </div>
             </div>
           @endforeach
-          
+
         </section>
 
   <!-- Footer -->

@@ -31,7 +31,7 @@
                 <a href="{{ route('favoritos') }}" title="Favoritos">
                 <span class="material-icons">favorite</span>
                 </a>
-                <a href="{{ route('vizualizarcliente') }}" title="VizualizarCliente">
+                <a href="" title="VizualizarCliente">
                 <span class="material-icons">account_circle</span>
                 </a>
                 <a href="{{ route ('home') }}" title="home">

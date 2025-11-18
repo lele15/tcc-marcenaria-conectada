@@ -15,7 +15,6 @@ class FabricanteSeeder extends Seeder
     {
         $data = [
             [
-                "nome" => 'ALEXANDRE DE ALMEIDA NASCIMENTO',
                 "cnpj" => "12.345.698/0001-98",
                 "instagram" => '@ale_moveis_rusticos',
                 "whatsapp" => '55(41)99182-2190',

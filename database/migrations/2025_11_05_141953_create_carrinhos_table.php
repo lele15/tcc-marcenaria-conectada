@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('carrinhos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('data');
-            $table->float('subtotal');
-            $table->integer('quantidade');
-            $table->unsignedBigInteger('pedido_id');
-            $table->foreign('pedido_id')->references('id')->on('pedidos');
-});
+            $table->float('total');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+        });
     }
 
     /**

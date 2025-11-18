@@ -68,6 +68,12 @@
   cursor: pointer;
 }
 
+.fav {
+  color: #e53935;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 .actions button {
   background:#9D8576;
   color: white;
@@ -75,6 +81,16 @@
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.actions a {
+  background:#9D8576;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+    text-decoration: none;
 }
 
 .actions button:hover {

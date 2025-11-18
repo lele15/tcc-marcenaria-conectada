@@ -14,10 +14,16 @@ class Produto extends Model
     public function fabricante(){
         return $this->belongsTo('App\Models\Fabricante');
     }
-    public function cliente (){
-        return $this->belongsToMany('App\Models\Cliente', 'favoritos');
+
+    public function user (){
+        return $this->belongsToMany('App\Models\Cliente', 'users');
     }
+
     public function pedido (){
         return $this->belongsToMany('App\Models\Pedido', 'produto_pedidos');
+    }
+
+    public function carrinho (){
+        return $this->belongsToMany('App\Models\Carrinho', 'produto_carrinhos');
     }
 }
