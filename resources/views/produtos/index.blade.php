@@ -13,9 +13,9 @@
     <div class="nav-content">
       <!-- Logo -->
       <div class="logo">
-        <a href="{{'home'}}" title="Home">
+
           <img src="img/logo.png" alt="Marcenaria Conectada">
-        </a>
+
       </div>
       <div class="nav-icons">
         <a href="" title="Histórico">
@@ -40,24 +40,24 @@
       <div class="product-card">
         <img src="{{ asset('storage/'.$item->foto) }}" alt="Armario">
         <h3>{{$item->nome}}</h3>
-        <span>Categoria:{{$item->categoria}}</span>
+        <span>CATEGORIA:{{$item->categoria}}</span>
         <br>
-        <span>Descrição:{{ $item->descricao }}</span>
+        <span>DESCRIÇÃO:{{ $item->descricao }}</span>
         <br>
-        <span>Medidas: {{ $item->altura }} x {{ $item->largura }} x {{ $item->profundidade }}</span>
+        <span>MEDIDAS: {{ $item->altura }} x {{ $item->largura }} x {{ $item->profundidade }}</span>
         <br>
-        <span>Fabricante: {{ $item->fabricante->nome }}</span>
+        <span>FABRICANTE: {{ $item->fabricante->user->name }}</span>
         <br>
-        <span>Preço: {{ $item->preco }}</span>
+        <span>PREÇO: {{ $item->preco }}</span>
         <p></p>
         <a href="{{route('produtos.edit', $item->id)}}" class="edit-btn" style="text-decoration: none;"><span class="material-icons">edit</span></a>
-        
+
         <form action="{{route('produtos.destroy', $item->id)}}" method="post" style="display: inline;">
             @csrf
             @method('DELETE')
             <button type="submit" class="delete-btn" style="text-decoration: none;">
               <span class="material-icons">delete</span>
-            </button>                
+            </button>
         </form>
 
 

@@ -53,7 +53,7 @@
                 <select id="nome-produto" name="nome" required>
                     <option value="">Selecione a categoria primeiro</option>
                 </select>
-    
+
 
                 <!-- Descrição -->
                 <label for="descricao">Descrição:</label>
@@ -106,10 +106,10 @@
             const campoProfundidade = document.getElementById("campo-profundidade");
 
             const movelTemProfundidade = [
-            "guarda-roupa","cômoda","criado-mudo","penteadeira","sapateira",
+            "guarda roupa","cômoda","criado mudo","penteadeira","sapateira",
             "nicho","rack","estante","aparador","cadeira","cristaleira",
-            "armário","balcão","gabinete-de-pia","bancada","escrivaninha",
-            "gabinete-de-banheiro","nicho-de-parede"
+            "armário","balcão","gabinete de pia","bancada","escrivaninha",
+            "gabinete de banheiro","nicho de parede"
             ];
 
             // Popula select de produtos conforme categoria

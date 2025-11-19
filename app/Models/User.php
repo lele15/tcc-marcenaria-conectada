@@ -46,7 +46,7 @@ class User extends Authenticatable
     ];
 
     public function fabricante (){
-        return $this->hasMany('App/Models/Fabricante');
+        return $this->hasOne('App/Models/Fabricante');
     }
     public function cliente (){
         return $this->hasMany('App/Models/Cliente');
