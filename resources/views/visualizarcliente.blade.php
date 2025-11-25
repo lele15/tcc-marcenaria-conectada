@@ -35,8 +35,9 @@
         <div class="profile-actions"> <button class="edit-btn"
                 onclick="window.location.href='{{ route('editarperfil') }}'"><span
                     class="material-icons">edit</span>Editar Perfil</button>
-            <form method="GET" action="{{ route('password.confirm') }}"> <button class="delete-btn" type="submit">
-                    <span class="material-icons">delete</span> Excluir Perfil </button> </form>
+                <button class="delete-btn" onclick="window.location.href='{{ route('password.confirm') }}'">
+                    <span class="material-icons">delete</span> Excluir Perfil
+                </button>
         </div>
     </div> <!-- Footer -->
     <div class="footer">

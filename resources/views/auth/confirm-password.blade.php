@@ -29,7 +29,7 @@
       <a href="{{ route('favoritos') }}" title="Favoritos">
         <span class="material-icons">favorite</span>
       </a>
-      <a href="{{ route('cadastrocliente') }}" title="Cadastro">
+      <a href="{{ route('register') }}" title="Cadastro">
         <span class="material-icons">person_add</span>
       </a>
     </div>
@@ -62,6 +62,15 @@
       <button type="submit" class="btn-login">Confirmar</button>
   </form>
 </section>
+
+<form method="POST" action="{{ route('profile.destroy') }}">
+    @csrf
+    @method('DELETE')
+
+    <button type="submit" class="delete-btn">
+        Deletar Conta
+    </button>
+</form>
 
 <!-- Footer -->
 <div class="footer">

@@ -4,57 +4,62 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
-use Monolog\Handler\FingersCrossed\ActivationStrategyInterface;
 
 class ProdutoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista produtos ativos
      */
     public function index()
     {
         $produtos = Produto::where('ativo', 1)->get();
         return view('produtos.index', compact('produtos'));
-
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Form de criação
      */
-    public function create() {
+    public function create()
+    {
         return view('produtos.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Salvar novo produto
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nome'        => 'required|string|max:255',
+            'descricao'   => 'required|string',
+            'preco'       => 'required|numeric|min:0',
+            'categoria'   => 'required|string',
+            'altura'      => 'required|numeric|min:0',
+            'largura'     => 'required|numeric|min:0',
+            'profundidade'=> 'nullable|numeric|min:0',
+            'foto'        => 'nullable|image|max:4096',
+        ]);
+
         $produto = new Produto();
 
-
-        $produto->nome = mb_strtoupper($request->nome, 'UTF-8');
-        $produto->descricao = mb_strtoupper($request->descricao, 'UTF-8');
-        $produto->preco = $request->preco;
-        $produto->categoria = mb_strtoupper($request->categoria, 'UTF-8');
-        $produto->altura = $request->altura;
-        $produto->largura = $request->largura;
-        if($request->profundidade){
-            $produto->profundidade = $request->profundidade;
-        }
-        else{
-            $produto->profundidade = 0;
-        }
-        $produto->ativo = 1;
+        $produto->nome        = mb_strtoupper($request->nome, 'UTF-8');
+        $produto->descricao   = mb_strtoupper($request->descricao, 'UTF-8');
+        $produto->preco       = $request->preco;
+        $produto->categoria   = mb_strtoupper($request->categoria, 'UTF-8');
+        $produto->altura      = $request->altura;
+        $produto->largura     = $request->largura;
+        $produto->profundidade= $request->profundidade ?? 0;
+        $produto->ativo       = 1;
         $produto->fabricante_id = 1;
+
         $produto->save();
 
-        if($request->hasFile('foto')) {
-            // Upload File
-            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
-            $name = $produto->id.'_'.time().'.'.$extensao_arq;
+        if ($request->hasFile('foto')) {
+            $ext = $request->file('foto')->getClientOriginalExtension();
+            $name = $produto->id . '_' . time() . '.' . $ext;
+
             $request->file('foto')->storeAs('fotos', $name, ['disk' => 'public']);
-            $produto->foto = 'fotos/'.$name;
+            $produto->foto = 'fotos/' . $name;
             $produto->save();
         }
 
@@ -62,76 +67,87 @@ class ProdutoController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Form de edição
      */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
-    }
+        $produto = Produto::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $produto= Produto::find($id);
-
-        if(isset($produto)) {
-            return view('produtos.edit', compact('produto'));
+        if (!$produto) {
+            return redirect()->route('produtos.index');
         }
 
-        return redirect()->route('produtos.index');
+        return view('produtos.edit', compact('produto'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualizar produto
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'nome'        => 'required|string|max:255',
+            'descricao'   => 'required|string',
+            'preco'       => 'required|numeric|min:0',
+            'categoria'   => 'required|string',
+            'altura'      => 'required|numeric|min:0',
+            'largura'     => 'required|numeric|min:0',
+            'profundidade'=> 'nullable|numeric|min:0',
+            'foto'        => 'nullable|image|max:4096',
+        ]);
 
-        $produto= Produto::find($id);
+        $produto = Produto::find($id);
 
-        if(isset($produto)) {
-            
-            $produto->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $produto->descricao = mb_strtoupper($request->descricao, 'UTF-8');
-            $produto->preco = $request->preco;
-            $produto->categoria = mb_strtoupper($request->categoria, 'UTF-8');
-            $produto->altura = $request->altura;
-            $produto->largura = $request->largura;
-            if($request->profundidade){
-                $produto->profundidade = $request->profundidade;
-            }
-            else{
-                $produto->profundidade = 0;
-            }
+        if (!$produto) {
+            return redirect()->route('produtos.index');
+        }
 
-            $produto->save();
+        $produto->nome        = mb_strtoupper($request->nome, 'UTF-8');
+        $produto->descricao   = mb_strtoupper($request->descricao, 'UTF-8');
+        $produto->preco       = $request->preco;
+        $produto->categoria   = mb_strtoupper($request->categoria, 'UTF-8');
+        $produto->altura      = $request->altura;
+        $produto->largura     = $request->largura;
+        $produto->profundidade= $request->profundidade ?? 0;
 
-            if($request->hasFile('foto')) {
-            // Upload File
-            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
-            $name = $produto->id.'_'.time().'.'.$extensao_arq;
+        $produto->save();
+
+        if ($request->hasFile('foto')) {
+            $ext = $request->file('foto')->getClientOriginalExtension();
+            $name = $produto->id . '_' . time() . '.' . $ext;
+
             $request->file('foto')->storeAs('fotos', $name, ['disk' => 'public']);
-            $produto->foto = 'fotos/'.$name;
+            $produto->foto = 'fotos/' . $name;
             $produto->save();
-        }
         }
 
         return redirect()->route('produtos.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deletar produto
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        $produto= Produto::find($id);
+        $produto = Produto::find($id);
 
-        if(isset($produto)) {
+        if ($produto) {
             $produto->delete();
         }
 
         return redirect()->route('produtos.index');
+    }
+
+    /**
+     * Ativar / desativar
+     */
+    public function toggleActive($id)
+    {
+        $produto = Produto::findOrFail($id);
+
+        $produto->ativo = !$produto->ativo;
+        $produto->save();
+
+        return back()->with('status', 'Produto atualizado.');
     }
 }

@@ -2,28 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Produto extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    protected $table = 'produtos';
 
-    public function fabricante(){
-        return $this->belongsTo('App\Models\Fabricante');
+    protected $fillable = [
+        'nome',
+        'descricao',
+        'categoria',
+        'altura',
+        'largura',
+        'profundidade',
+        'preco',
+        'foto',
+        'ativo',
+        'fabricante_id'
+    ];
+
+    // Produto pertence ao fabricante
+    public function fabricante()
+    {
+        return $this->belongsTo(User::class, 'fabricante_id');
     }
 
-    public function user (){
-        return $this->belongsToMany('App\Models\Cliente', 'users');
+    // Produto pode estar em vários favoritos
+    public function favoritos()
+    {
+        return $this->hasMany(Favorito::class, 'product_id');
     }
 
-    public function pedido (){
-        return $this->belongsToMany('App\Models\Pedido', 'produto_pedidos');
-    }
-
-    public function carrinho (){
-        return $this->belongsToMany('App\Models\Carrinho', 'produto_carrinhos');
+    // Produto pode estar em vários carrinhos
+    public function carrinhos()
+    {
+        return $this->hasMany(Carrinho::class, 'product_id');
     }
 }

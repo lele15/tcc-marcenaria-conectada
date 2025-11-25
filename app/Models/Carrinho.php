@@ -2,17 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Carrinho extends Model
 {
-    use HasFactory;
-    public function user (){
-        return $this->belongsTo('App/Models/User');
+    protected $table = 'carrinhos';
+
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'quantity',
+    ];
+
+    // Um item do carrinho pertence a um produto
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class, 'product_id');
     }
 
-    public function produto (){
-        return $this->belongsToMany('App/Models/Produto', 'produto_carrinhos');
+    // Um item do carrinho pertence a um usuário
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
+

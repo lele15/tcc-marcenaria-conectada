@@ -2,16 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Favorito extends Model
 {
-    use HasFactory;
-    public function user (){
-        return $this->belongsTo('App/Models/User');
+    protected $table = 'favoritos';
+
+    protected $fillable = [
+        'user_id',
+        'product_id',
+    ];
+
+    // Favorito pertence a um produto
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class, 'product_id');
     }
-    public function produto (){
-        return $this->belongsTo('App/Models/Produto');
+
+    // Favorito pertence a um usuário
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
+
