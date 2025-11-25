@@ -32,6 +32,9 @@
                 <a href="{{ route('favoritos') }}" title="Favoritos">
                 <span class="material-icons">favorite</span>
                 </a>
+                <a href="{{ route('visualizarcliente') }}" title="Favoritos">
+                <span class="material-icons">account_circle</span>
+                </a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a onclick="event.preventDefault(); this.closest('form').submit();" title="Logout">

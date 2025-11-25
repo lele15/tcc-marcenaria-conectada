@@ -23,7 +23,7 @@
     </div>
 
     <div class="nav-icons">
-      <a href="{{ route('historico') }}">
+      <!--<a href="{{ route('historico') }}">
         <span class="material-icons">assignment</span>
       </a>
 
@@ -34,7 +34,7 @@
 
       <a href="{{ route('favoritos') }}">
         <span class="material-icons">favorite_border</span>
-      </a>
+      </a>-->
 
       <a href="{{ route('login') }}">
         <span class="material-icons">login</span>

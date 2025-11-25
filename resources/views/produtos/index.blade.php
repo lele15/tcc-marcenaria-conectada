@@ -35,7 +35,7 @@
     <h2>Galeria de Produtos do fabricante</h2>
     <div class="product-gallery">
 
-        @foreach ($produtos as $item )
+    @foreach ($produtos as $item )
       <!-- Produto 1 -->
       <div class="product-card">
         <img src="{{ asset('storage/'.$item->foto) }}" alt="Armario">

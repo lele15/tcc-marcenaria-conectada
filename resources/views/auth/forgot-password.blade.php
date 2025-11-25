@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recuperar Senha - Marcenaria Conectada</title>
+  <title>Marcenaria Conectada - Recuperar senha</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
   <link rel="shortcut icon" href="{{ asset('img/MR.png') }}" type="image/x-icon">
@@ -23,10 +23,10 @@
     </div>
 
     <div class="nav-icons">
-      <a href="{{ route('historico') }}"><span class="material-icons">assignment</span></a>
+      <!--<a href="{{ route('historico') }}"><span class="material-icons">assignment</span></a>
       <a href="{{ route('carrinho') }}"><span class="material-icons">shopping_cart</span></a>
-      <a href="{{ route('favoritos') }}"><span class="material-icons">favorite</span></a>
-      <a href="{{ route('login') }}"><span class="material-icons">login</span></a>
+      <a href="{{ route('favoritos') }}"><span class="material-icons">favorite</span></a>-->
+      <a href="{{ route('register') }}"><span class="material-icons">person_add</span></a>
     </div>
 
   </div>
