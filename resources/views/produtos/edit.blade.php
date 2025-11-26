@@ -13,13 +13,16 @@
     <body>
         <!-- Navbar -->
         <header class="navbar">
-            <div class="nav-content">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="{{ route('home') }}" title="Home">
-                        <img src="img/logo.png" alt="Marcenaria Conectada">
-                    </a>
-                </div>
+
+        <div class="nav-content">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{{ route('home') }}" title="Home">
+                    <!-- <img src="storage/app/logo/logo.png" alt="Marcenaria Conectada">-->
+                    <img src="{{ asset('img/logo.png') }}" alt="Marcenaria Conectada">
+                </a>
+            </div>
+
                 <div class="nav-icons">
                     <a href=""title="Histórico">
                         <span class="material-icons">assignment</span>
@@ -56,7 +59,7 @@
                         <option value="">Selecione a categoria primeiro</option>
                     </select>
                 </div>
-                
+
                 <!-- Descrição -->
                 <label for="descricao">Descrição:</label>
                 <textarea id="descricao" name="descricao" rows="3">{{$produto->descricao}}</textarea>
@@ -94,123 +97,89 @@
             </form>
         </section>
 
-        
-
-        <script>
-            document.addEventListener('DOMContentLoaded', () =>
-            {
-                const categoriaSelect = document.getElementById('categoria');
-                const medidasContainer = document.getElementById('medidas-container');
-                const profundidadeDiv = document.getElementById('campo-profundidade');
-               
 
 
-                // Função para mostrar ou ocultar medidas
-                function toggleMedidas()
-                {
-                    const categoria = categoriaSelect.value;
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-                    // Exemplo: apenas quarto e sala têm profundidade
-                    if(categoria === 'quarto' || categoria === 'sala')
-                    {
-                        medidasContainer.style.display = 'flex';
-                        profundidadeDiv.style.display = 'flex';
-                    } else if(categoria === 'cozinha' || categoria === 'banheiro')
-                    {
-                        medidasContainer.style.display = 'flex';
-                        profundidadeDiv.style.display = 'none';
-                    }else
-                    {
-                        medidasContainer.style.display = 'none';
-                    }
-                }
+    const produtosPorCategoria = {
+        "quarto": ["Guarda-roupa", "Cômoda", "Criado-mudo", "Penteadeira", "Cabeceira", "Sapateira", "Nicho"],
+        "cozinha": ["Armário", "Balcão", "Gabinete de pia", "Bancada", "Cristaleira", "Mesa", "Cadeira"],
+        "sala": ["Rack", "Painel de TV", "Estante", "Aparador"],
+        "banheiro": ["Gabinete de banheiro", "Nicho de parede", "Prateleira"]
+    };
 
-                // Inicializa na carga da página
-                toggleMedidas();
+    const movelTemProfundidade = [
+        "guarda-roupa","cômoda","criado-mudo","penteadeira","sapateira",
+        "nicho","rack","estante","aparador","cadeira","cristaleira",
+        "armário","balcão","gabinete-de-pia","bancada","escrivaninha",
+        "gabinete-de-banheiro","nicho-de-parede"
+    ];
 
-                // Atualiza quando a categoria mudar
-                categoriaSelect.addEventListener('change', toggleMedidas);
+    const categoriaSelect = document.getElementById("categoria");
+    const nomeProdutoSelect = document.getElementById("nome-produto");
+    const divProduto = document.getElementById("div-produto");
+    const medidasContainer = document.getElementById("medidas-container");
+    const campoProfundidade = document.getElementById("campo-profundidade");
 
-                // Botão cancelar: limpa campos ou volta para a página anterior
-                const btnCancelar = document.querySelector('.cancelar');
-                btnCancelar.addEventListener('click', () =>
-                {
-                    // Exemplo: voltar para página anterior
-                    window.history.back();
-                });
+    // Nome atual do produto vindo do banco (em lowercase e com hífens)
+    const nomeAtual = "{{$produto->nome}}".toLowerCase().replace(/\s+/g, "-");
 
-                // Optional: validação simples antes de enviar
-                const form = document.querySelector('form');
-                form.addEventListener('submit', (e) =>
-                {
-                    const nome = document.getElementById('nome').value.trim();
-                    const preco = document.getElementById('preco').value;
+    // Função que popula o select
+    function carregarProdutos() {
+        const categoria = categoriaSelect.value.toLowerCase();
 
-                    if(nome === '' || preco <= 0)
-                    {
-                        e.preventDefault();
-                        alert('Por favor, preencha todos os campos obrigatórios corretamente!');
-                    }
-                });
-            });
+        if (!categoria || !produtosPorCategoria[categoria]) {
+            nomeProdutoSelect.innerHTML = "<option value=''>Selecione...</option>";
+            divProduto.style.display = "none";
+            return;
+        }
 
-            const produtosPorCategoria = {
-            "quarto": ["Guarda-roupa", "Cômoda", "Criado-mudo", "Penteadeira", "Cabeceira", "Sapateira", "Nicho"],
-            "cozinha": ["Armário", "Balcão", "Gabinete de pia", "Bancada", "Cristaleira", "Mesa", "Cadeira"],
-            "sala": ["Rack", "Painel de TV", "Estante", "Aparador"],
-            "banheiro": ["Gabinete de banheiro", "Nicho de parede", "Prateleira"]
-            };
+        divProduto.style.display = "block";
+        nomeProdutoSelect.innerHTML = "<option value=''>Selecione...</option>";
 
-            const categoriaSelect = document.getElementById("categoria");
-            const nomeProdutoSelect = document.getElementById("nome-produto");
-            const novoProdutoBtn = document.getElementById("novo-produto-btn");
-            const novoProdutoInput = document.getElementById("novo-produto-input");
-            const medidasContainer = document.getElementById("medidas-container");
-            const campoProfundidade = document.getElementById("campo-profundidade");
-            const divProduto = document.getElementById('div-produto');
+        produtosPorCategoria[categoria].forEach(produto => {
+            const value = produto.toLowerCase().replace(/\s+/g, "-");
+            const option = document.createElement("option");
 
-            const movelTemProfundidade = [
-            "guarda-roupa","cômoda","criado-mudo","penteadeira","sapateira",
-            "nicho","rack","estante","aparador","cadeira","cristaleira",
-            "armário","balcão","gabinete-de-pia","bancada","escrivaninha",
-            "gabinete-de-banheiro","nicho-de-parede"
-            ];
+            option.value = value;
+            option.textContent = produto;
 
-            // Popula select de produtos conforme categoria
-            categoriaSelect.addEventListener("change", function () {
-            const categoria = this.value;
-            nomeProdutoSelect.innerHTML = '<option value="">Selecione...</option>';
-
-            if (categoria && produtosPorCategoria[categoria]) {
-                produtosPorCategoria[categoria].forEach(produto => {
-                const option = document.createElement("option");
-                option.value = produto.toLowerCase().replace(/\s+/g, "-");
-                option.textContent = produto;
-                nomeProdutoSelect.appendChild(option);
-                });
-                nomeProdutoSelect.style.display = "inline-block";
-                divProduto.style.display = "inline-block"; 
-                novoProdutoInput.style.display = "none";
-            } else {
-                nomeProdutoSelect.style.display = "none";
-                divProduto.style.display = "none"; 
+            // Seleciona automaticamente o nome atual vindo do BD
+            if (value === nomeAtual) {
+                option.selected = true;
             }
 
-            medidasContainer.style.display = "block";
-            campoProfundidade.style.display = "none"; // espera seleção do produto
-            
-            
-            });
+            nomeProdutoSelect.appendChild(option);
+        });
 
-            // Atualiza profundidade quando um produto é selecionado
-            nomeProdutoSelect.addEventListener("change", function() {
-            const produto = this.value;
-            if (movelTemProfundidade.includes(produto)) {
-                campoProfundidade.style.display = "block";
-            } else {
-                campoProfundidade.style.display = "none";
-            }
-            });
-        </script>
+        // Mostrar medidas
+        medidasContainer.style.display = "block";
+
+        // Configura profundidade automaticamente
+        if (movelTemProfundidade.includes(nomeProdutoSelect.value)) {
+            campoProfundidade.style.display = "block";
+        } else {
+            campoProfundidade.style.display = "none";
+        }
+    }
+
+    // Quando trocar categoria → carrega produtos
+    categoriaSelect.addEventListener("change", carregarProdutos);
+
+    // Quando trocar nome do produto → altera profundidade
+    nomeProdutoSelect.addEventListener("change", function() {
+        if (movelTemProfundidade.includes(this.value)) {
+            campoProfundidade.style.display = "block";
+        } else {
+            campoProfundidade.style.display = "none";
+        }
+    });
+
+    // CARREGAR TUDO NA ABERTURA DA PÁGINA
+    carregarProdutos();
+});
+</script>
+
     </body>
 </html>

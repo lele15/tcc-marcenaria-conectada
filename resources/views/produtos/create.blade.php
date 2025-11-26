@@ -13,13 +13,14 @@
     <body>
         <!-- Navbar -->
         <header class="navbar">
-            <div class="nav-content">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="{{ route('home') }}" title="Home">
-                        <img src="img/logo.png" alt="Marcenaria Conectada">
-                    </a>
-                </div>
+        <div class="nav-content">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{{ route('home') }}" title="Home">
+                    <!-- <img src="storage/app/logo/logo.png" alt="Marcenaria Conectada">-->
+                    <img src="{{ asset('img/logo.png') }}" alt="Marcenaria Conectada">
+                </a>
+            </div>
                 <div class="nav-icons">
                     <a href="{{ route('historico') }}" title="Histórico">
                         <span class="material-icons">assignment</span>
@@ -81,6 +82,14 @@
                 <!-- Preço -->
                 <label for="preco">Preço:</label>
                 <input type="number" id="preco" name="preco" step="0.01">
+
+               {{--<label for="fabricante_id">Fabricante:</label>
+                <select id="fabricante_id" name="fabricante_id" required>
+                    @foreach($fabricantes as $fab)
+                        <option value="{{ $fab->id }}">{{ $fab->nome }}</option>
+                    @endforeach
+                </select>--}}
+
                 <!-- Upload da Foto -->
                 <label for="foto" class="file-label">Foto:</label>
                 <input type="file" id="foto" name="foto" accept="image/*">
@@ -106,10 +115,10 @@
             const campoProfundidade = document.getElementById("campo-profundidade");
 
             const movelTemProfundidade = [
-            "guarda roupa","cômoda","criado mudo","penteadeira","sapateira",
+            "guarda-roupa","cômoda","criado mudo","penteadeira","sapateira",
             "nicho","rack","estante","aparador","cadeira","cristaleira",
             "armário","balcão","gabinete de pia","bancada","escrivaninha",
-            "gabinete de banheiro","nicho de parede"
+            "gabinete de banheiro","nicho de parede","prateleira"
             ];
 
             // Popula select de produtos conforme categoria

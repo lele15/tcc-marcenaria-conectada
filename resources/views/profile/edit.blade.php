@@ -84,9 +84,11 @@
                     onclick="toggleSenha('password_confirmation', this)">visibility</span>
             </div>
 
-
             <div class="btn-group">
-                <button type="submit" class="salvar">Salvar Alterações</button>
+
+            <button type="submit" class="salvar">
+                <a href="{{route('profile.edit')}}" class="salvar" style="text-decoration: none;"></a>
+            Salvar Alterações</button>
             </div>
 
         </form>

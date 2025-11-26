@@ -77,12 +77,15 @@ flex-grow: 1;
 /* Rodapé */
 
 .footer {
+  position: fixed;
   width: 100%; /* Faz o footer ocupar toda a largura da tela */
   background-color: #9D8576;/* Cor de fundo */
   color: #333; /* Cor do texto */
   text-align: center; /* Centraliza o texto */
   padding: 15px 0; /* Espaçamento interno */
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  bottom: 0;
+  left: 0;
 }
 
 .footer .social-icons {

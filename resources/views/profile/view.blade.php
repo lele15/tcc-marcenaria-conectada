@@ -47,12 +47,8 @@
             Pedidos
         </button>
         <div class="profile-actions">
-            <button class="edit-btn" onclick="window.location.href='{{ route('profile.edit') }}'">
-                <span class="material-icons">edit</span>Editar Perfil
+            <button class="edit-btn" onclick="window.location.href='{{ route('profile.edit') }}'">Editar Perfil
             </button>
-                <button class="delete-btn" onclick="window.location.href='{{ route('password.confirm') }}'">
-                    <span class="material-icons">delete</span> Excluir Perfil
-                </button>
         </div>
     </div> <!-- Footer -->
     <div class="footer">

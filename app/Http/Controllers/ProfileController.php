@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
 
+use function Laravel\Prompts\password;
+
 class ProfileController extends Controller
 {
 
@@ -54,7 +56,7 @@ class ProfileController extends Controller
             ]);
         }
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.view')->with('status', 'profile-updated');
     }
     /**
      * Delete the user's account.

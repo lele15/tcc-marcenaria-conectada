@@ -55,14 +55,14 @@
         <form action="{{route('produtos.destroy', $item->id)}}" method="post" style="display: inline;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="delete-btn" style="text-decoration: none;">
+            <button type="submit" class="delete-btn">
               <span class="material-icons">delete</span>
             </button>
         </form>
 
 
         <button class="btn">ativar</button>
-      </div>
+     </div>
     @endforeach
 
       <!-- Card de adicionar -->

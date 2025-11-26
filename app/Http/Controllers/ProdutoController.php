@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\Fabricante;
 
 class ProdutoController extends Controller
 {
@@ -21,7 +22,8 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        return view('produtos.create');
+        $fabricantes = \App\Models\Fabricante::all();
+        return view('produtos.create', compact('fabricantes'));
     }
 
     /**
@@ -72,12 +74,14 @@ class ProdutoController extends Controller
     public function edit($id)
     {
         $produto = Produto::find($id);
+        $fabricantes = Fabricante::all();
+
 
         if (!$produto) {
             return redirect()->route('produtos.index');
         }
 
-        return view('produtos.edit', compact('produto'));
+        return view('produtos.edit', compact('produto', 'fabricantes'));
     }
 
     /**
@@ -109,6 +113,7 @@ class ProdutoController extends Controller
         $produto->altura      = $request->altura;
         $produto->largura     = $request->largura;
         $produto->profundidade= $request->profundidade ?? 0;
+        $produto->fabricante_id = 1;
 
         $produto->save();
 
