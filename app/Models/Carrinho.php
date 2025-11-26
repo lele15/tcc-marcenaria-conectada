@@ -10,14 +10,14 @@ class Carrinho extends Model
 
     protected $fillable = [
         'user_id',
-        'product_id',
-        'quantity',
+        'produto_id',
+        'quantidade',
     ];
 
     // Um item do carrinho pertence a um produto
     public function produto()
     {
-        return $this->belongsTo(Produto::class, 'product_id');
+        return $this->belongsTo(Produto::class, 'produto_id');
     }
 
     // Um item do carrinho pertence a um usuário

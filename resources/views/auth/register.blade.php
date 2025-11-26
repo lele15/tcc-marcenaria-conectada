@@ -23,19 +23,6 @@
     </div>
 
     <div class="nav-icons">
-      <!--<a href="{{ route('historico') }}">
-        <span class="material-icons">assignment</span>
-      </a>
-
-      <a href="{{ route('carrinho') }}">
-        <span class="material-icons">shopping_cart</span>
-        <span class="cart-count" id="cart-counter">0</span>
-      </a>
-
-      <a href="{{ route('favoritos') }}">
-        <span class="material-icons">favorite_border</span>
-      </a>-->
-
       <a href="{{ route('login') }}">
         <span class="material-icons">login</span>
       </a>

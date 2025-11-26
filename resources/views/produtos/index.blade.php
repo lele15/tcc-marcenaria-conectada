@@ -46,7 +46,7 @@
         <br>
         <span>MEDIDAS: {{ $item->altura }} x {{ $item->largura }} x {{ $item->profundidade }}</span>
         <br>
-        <span>FABRICANTE: {{ $item->fabricante->user->name }}</span>
+        <span>FABRICANTE: {{ $item->fabricante->name }}</span>
         <br>
         <span>PREÇO: {{ $item->preco }}</span>
         <p></p>

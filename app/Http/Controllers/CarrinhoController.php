@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class CarrinhoController extends Controller
 {
-    /**
-     * Exibe todos os itens do carrinho do usuário logado.
-     */
+    // Mostrar carrinho do cliente
     public function index()
     {
         $itens = Carrinho::with('produto')
@@ -19,9 +18,7 @@ class CarrinhoController extends Controller
         return view('carrinho.index', compact('itens'));
     }
 
-    /**
-     * Adiciona item ao carrinho ou atualiza quantidade.
-     */
+    // Adicionar ao carrinho (ou atualizar quantidade se já existir)
     public function store(Request $request)
     {
         $request->validate([
@@ -32,48 +29,81 @@ class CarrinhoController extends Controller
         Carrinho::updateOrCreate(
             [
                 'user_id'    => auth()->id(),
-                'produto_id' => $request->produto_id,
+                'produto_id' => $request->produto_id
             ],
             [
-                'quantidade'   => $request->quantidade,
+                'quantidade'   => $request->quantidade
             ]
         );
 
         return back()->with('success', 'Produto adicionado ao carrinho!');
     }
 
-    /**
-     * Atualiza quantidade de um item do carrinho.
-     */
-    public function update(Request $request, $id)
+    // Atualizar quantidade de um item específico
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'quantidade' => 'required|integer|min:1'
         ]);
 
-        $item = Carrinho::where('user_id', auth()->id())->findOrFail($id);
-        $item->update(['quantidade' => $request->quantidade]);
+        $item = Carrinho::where('user_id', auth()->id())
+            ->where('id', $id)
+            ->first();
+
+        if (!$item) {
+            return back()->with('error', 'Item não encontrado no carrinho.');
+        }
+
+        $item->quantidade = $request->quantidade;
+        $item->save();
 
         return back()->with('success', 'Quantidade atualizada!');
     }
 
-    /**
-     * Remove item específico.
-     */
-    public function destroy($id)
+    // Remover item do carrinho
+    public function destroy(string $id)
     {
-        $item = Carrinho::where('user_id', auth()->id())->findOrFail($id);
-        $item->delete();
+        $deleted = Carrinho::where('user_id', auth()->id())
+                ->where('id', $id)
+                ->delete();
 
-        return back()->with('success', 'Item removido do carrinho!');
+        if (!$deleted) {
+            return back()->with('error', 'Item não encontrado.');
+        }
+
+        return back()->with('success', 'Item removido!');
     }
 
-    /**
-     * Esvazia todo o carrinho
-     */
+    // Limpar carrinho inteiro
     public function clear()
     {
         Carrinho::where('user_id', auth()->id())->delete();
-        return back()->with('success', 'Carrinho esvaziado!');
+        return back()->with('success', 'Carrinho limpo!');
+    }
+
+    // Finalizar: monta mensagem e redireciona para WhatsApp do fabricante principal dos itens
+    public function finalizar()
+    {
+        $itens = Carrinho::where('user_id', auth()->id())->with('produto.fabricante')->get();
+
+        if ($itens->isEmpty()) {
+            return back()->with('error', 'Seu carrinho está vazio!');
+        }
+
+        // Monta mensagem
+        $mensagem = "Olá! Gostaria de fazer um pedido:%0A%0A";
+        foreach ($itens as $item) {
+            $mensagem .= "- {$item->produto->nome} (Qtd: {$item->quantidade})%0A";
+        }
+        $mensagem .= "%0A*Pedido realizado pelo sistema Marcenaria Conectada.*";
+
+        // Pegar número do fabricante do primeiro item
+        $fabricante = $itens->first()->produto->fabricante ?? null;
+        $numero = $fabricante && !empty($fabricante->whatsapp) ? preg_replace('/\D/','', $fabricante->whatsapp) : '5541991822190';
+
+
+        Carrinho::where('user_id', auth()->id())->delete();
+
+        return redirect("https://wa.me/{$numero}?text={$mensagem}");
     }
 }

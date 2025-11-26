@@ -15,26 +15,41 @@
 <body> <!-- Navbar -->
     <header class="navbar">
         <div class="nav-content"> <!-- Logo -->
-            <div class="logo"> <a href="{{ route('home') }}" title="Home"> <img src="img/logo.png"
-                        alt="Marcenaria Conectada"> </a> </div>
-            <div class="nav-icons"> <a href="{{ route('carrinho') }}" title="Carrinho"> <span
-                        class="material-icons">shopping_cart</span> </a> <a href="{{ route('favoritos') }}"
-                    title="Favoritos"> <span class="material-icons">favorite</span> </a> <a href="{{ route('home') }}"
-                    title="Home"> <span class="material-icons">logout</span> </a> </div>
+            <div class="logo">
+                <a href="{{ route('home') }}" title="Home">
+                    <img src="img/logo.png" alt="Marcenaria Conectada">
+                </a>
+            </div>
+            <div class="nav-icons">
+                {{--<a href="{{ route('carrinho.index') }}" title="Carrinho">
+                    <span class="material-icons">shopping_cart</span>
+                </a>
+                <a href="{{ route('favorito.index') }}" title="Favoritos">
+                    <span class="material-icons">favorite</span>
+                </a>--}}
+                <a href="{{ route('home') }}" title="Home">
+                    <span class="material-icons">logout</span>
+                </a>
+            </div>
         </div>
     </header>
-    <div class="visualizar"> <!-- Ícone de cliente -->
-        <div class="profile-photo"> <span class="material-icons">account_circle</span> </div> <!-- Título -->
-        <h1>Meu Perfil</h1> <!-- Informações -->
+    <div class="visualizar">
+        <div class="profile-photo">
+            <span class="material-icons">account_circle</span>
+        </div>
+        <h1>Meu Perfil</h1>
         <div class="profile-info">
             <p><strong>Nome Completo:</strong> {{ Auth::user()->name }}</p>
             <p><strong>CPF:</strong> {{ Auth::user()->cpf }}</p>
             <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-        </div> <button class="history-btn" onclick="window.location.href='{{ route('historico') }}'"> Histórico de
-            Pedidos </button>
-        <div class="profile-actions"> <button class="edit-btn"
-                onclick="window.location.href='{{ route('editarperfil') }}'"><span
-                    class="material-icons">edit</span>Editar Perfil</button>
+        </div>
+        <button class="history-btn" onclick="window.location.href='{{ route('historico') }}'"> Histórico de
+            Pedidos
+        </button>
+        <div class="profile-actions">
+            <button class="edit-btn" onclick="window.location.href='{{ route('profile.edit') }}'">
+                <span class="material-icons">edit</span>Editar Perfil
+            </button>
                 <button class="delete-btn" onclick="window.location.href='{{ route('password.confirm') }}'">
                     <span class="material-icons">delete</span> Excluir Perfil
                 </button>
@@ -42,8 +57,8 @@
     </div> <!-- Footer -->
     <div class="footer">
         <h3>Redes Sociais</h3>
-        <div class="social-icons"> <a href="https://instagram.com/ale_moveis_rusticos" target="_blank"> <img
-                    src="img/insta.png" alt="Instagram"> </a> <a href="https://wa.me/5541992772292" target="_blank">
+        <div class="social-icons"> <a href="https://instagram.com/ale_moveis_rusticos" target="_blank">
+            <img src="img/insta.png" alt="Instagram"> </a> <a href="https://wa.me/5541991822190" target="_blank">
                 <img src="img/whats.png" alt="WhatsApp"> </a> <a href="mailto:alexandrealmeidanascimento@gmail.com">
                 <img src="img/email.png" alt="Email"> </a> </div>
         <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>

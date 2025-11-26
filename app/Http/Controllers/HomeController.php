@@ -13,7 +13,7 @@ class HomeController extends Controller
     }
 
     public function login() {
-        return view('login');
+        return view('auth.login');
     }
 
     public function historico() {
@@ -21,24 +21,24 @@ class HomeController extends Controller
     }
 
     public function carrinho() {
-        return view('carrinho');
+        return view('carrinho.index');
     }
 
     public function favoritos() {
-        return view('favoritos');
+        return view('favorito.index');
     }
 
     public function painel(){
 
         $produtos = Produto::all();
-        return view('painel', compact('produtos'));
+        return view('produtos.index', compact('produtos'));
     }
 
     public function visualizarcliente() {
-        return view('visualizarcliente');
+        return view('profile.view');
     }
 
     public function visualizarfabricante() {
-        return view('visualizarfabricante');
+        return view('fabricante.view');
     }
 }

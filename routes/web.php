@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+apaguei o arquivo dashbo ard
+*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,8 +41,7 @@ Route::get('/visualizarcliente', [HomeController::class, 'visualizarcliente'])->
 Route::get('/visualizarfabricante', [HomeController::class, 'visualizarfabricante'])->name('visualizarfabricante');
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::get('/login', [ProdutoController::class, 'login'])->name('login');
-Route::get('/editarperfil', [ClienteController::class, 'editarperfil'])->name('editarperfil');
 
-Route::resource('/produtos', ProdutoController::class)->middleware(['auth', 'verified']);
+Route::resource('/produtos', ProdutoController::class)/*->middleware(['auth', 'verified'])*/;
 
 require __DIR__.'/auth.php';

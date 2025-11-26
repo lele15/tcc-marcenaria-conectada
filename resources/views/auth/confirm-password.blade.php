@@ -20,21 +20,30 @@
       </a>
     </div>
     <div class="nav-icons">
-      <a href="{{ route('historico') }}" title="Histórico">
-        <span class="material-icons">assignment</span>
-      </a>
-      <a href="{{ route('carrinho') }}" title="Carrinho">
-        <span class="material-icons">shopping_cart</span>
-      </a>
-      <a href="{{ route('favoritos') }}" title="Favoritos">
-        <span class="material-icons">favorite</span>
-      </a>
-      <a href="{{ route('register') }}" title="Cadastro">
-        <span class="material-icons">person_add</span>
-      </a>
+        @auth
+            <a href="{{ route('historico') }}" title="Histórico">
+                <span class="material-icons">assignment</span>
+            </a>
+            <a href="{{ route('carrinho') }}" title="Carrinho">
+                <span class="material-icons">shopping_cart</span>
+            </a>
+            <a href="{{ route('favoritos') }}" title="Favoritos">
+            <span class="material-icons">favorite</span>
+            </a>
+            <a href="{{ route('visualizarcliente') }}" title="Favoritos">
+            <span class="material-icons">account_circle</span>
+            </a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <a onclick="event.preventDefault(); this.closest('form').submit();" title="Logout">
+                    <span class="material-icons">logout</span>
+                </a>
+            </form>
+        @endauth
     </div>
   </div>
 </header>
+
 
 <section class="login">
   <h2>Confirmar Senha</h2>

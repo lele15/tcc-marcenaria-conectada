@@ -10,13 +10,13 @@ class Favorito extends Model
 
     protected $fillable = [
         'user_id',
-        'product_id',
+        'produto_id',
     ];
 
     // Favorito pertence a um produto
     public function produto()
     {
-        return $this->belongsTo(Produto::class, 'product_id');
+        return $this->belongsTo(Produto::class, 'produto_id');
     }
 
     // Favorito pertence a um usuário

@@ -30,12 +30,12 @@ class Produto extends Model
     // Produto pode estar em vários favoritos
     public function favoritos()
     {
-        return $this->hasMany(Favorito::class, 'product_id');
+        return $this->hasMany(Favorito::class, 'produto_id');
     }
 
     // Produto pode estar em vários carrinhos
     public function carrinhos()
     {
-        return $this->hasMany(Carrinho::class, 'product_id');
+        return $this->hasMany(Carrinho::class, 'produto_id');
     }
 }
