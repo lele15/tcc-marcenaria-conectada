@@ -80,7 +80,7 @@
             <img src="{{ asset('img/insta.png') }}" alt="Instagram">
         </a>
 
-        <a href="https://wa.me/5541992772292" target="_blank">
+        <a href="https://wa.me/5541991822190" target="_blank">
             <img src="{{ asset('img/whats.png') }}" alt="WhatsApp">
         </a>
 

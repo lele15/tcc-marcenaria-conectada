@@ -96,7 +96,7 @@
                     <a href="https://instagram.com/ale_moveis_rusticos" target="_blank">
                     <img src="img/insta.png" alt="Instagram">
                     </a>
-                    <a href="https://wa.me/5541992772292" target="_blank">
+                    <a href="https://wa.me/5541991822190" target="_blank">
                     <img src="img/whats.png" alt="WhatsApp">
                     </a>
                     <a href="mailto:alexandrealmeidanascimento@gmail.com">

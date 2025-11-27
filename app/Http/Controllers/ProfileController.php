@@ -56,7 +56,8 @@ class ProfileController extends Controller
             ]);
         }
 
-        return Redirect::route('profile.view')->with('status', 'profile-updated');
+        return redirect()->route('home');
+//        return Redirect::route('profile.view')->with('status', 'profile-updated');
     }
     /**
      * Delete the user's account.
