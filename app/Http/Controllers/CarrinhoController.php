@@ -3,106 +3,122 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrinho;
+use App\Models\ProdutoCarrinho;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class CarrinhoController extends Controller
 {
-    // Mostrar carrinho do cliente
-    public function index()
+
+    // Adicionar um produto ao carrinho
+    public function adicionar(Request $request)
     {
-        $itens = Carrinho::with('produto')
-            ->where('user_id', auth()->id())
-            ->get();
+        $produtoId = $request->produto_id;
+        $userId = auth()->id();
 
-        return view('carrinho.index', compact('itens'));
-    }
-
-    // Adicionar ao carrinho (ou atualizar quantidade se já existir)
-    public function store(Request $request)
-    {
-        $request->validate([
-            'produto_id' => 'required|exists:produtos,id',
-            'quantidade'   => 'required|integer|min:1'
-        ]);
-
-        Carrinho::updateOrCreate(
-            [
-                'user_id'    => auth()->id(),
-                'produto_id' => $request->produto_id
-            ],
-            [
-                'quantidade'   => $request->quantidade
-            ]
+        // Procura ou cria carrinho do usuário
+        $carrinho = Carrinho::firstOrCreate(
+            ['user_id' => $userId],
+            ['total' => 0]
         );
+
+        // Verifica se o produto já está no carrinho
+        $existe = ProdutoCarrinho::where('produto_id', $produtoId)
+                    ->where('carrinho_id', $carrinho->id)
+                    ->first();
+
+        if (!$existe) {
+            ProdutoCarrinho::create([
+                'produto_id' => $produtoId,
+                'carrinho_id' => $carrinho->id
+            ]);
+        }
 
         return back()->with('success', 'Produto adicionado ao carrinho!');
     }
 
-    // Atualizar quantidade de um item específico
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'quantidade' => 'required|integer|min:1'
-        ]);
 
-        $item = Carrinho::where('user_id', auth()->id())
-            ->where('id', $id)
+
+    public function index()
+    {
+        // pega usuário logado
+        $userId = auth()->id();
+
+        // busca o carrinho do usuário (ou null)
+        $carrinho = \App\Models\Carrinho::where('user_id', $userId)
+            ->with('produtos') // já traz a relação
             ->first();
 
-        if (!$item) {
-            return back()->with('error', 'Item não encontrado no carrinho.');
+        // se não existe, manda uma coleção vazia para a view
+        if (! $carrinho) {
+            return view('carrinho.index', ['itens' => collect()]);
         }
 
-        $item->quantidade = $request->quantidade;
-        $item->save();
-
-        return back()->with('success', 'Quantidade atualizada!');
+        // envia a coleção de produtos do carrinho
+        return view('carrinho.index', ['itens' => $carrinho->produtos]);
     }
 
-    // Remover item do carrinho
-    public function destroy(string $id)
-    {
-        $deleted = Carrinho::where('user_id', auth()->id())
-                ->where('id', $id)
-                ->delete();
 
-        if (!$deleted) {
-            return back()->with('error', 'Item não encontrado.');
+    // Remover item do carrinho
+    public function remover($produtoId)
+    {
+        $carrinho = Carrinho::where('user_id', auth()->id())->first();
+
+        if ($carrinho) {
+            ProdutoCarrinho::where('produto_id', $produtoId)
+                ->where('carrinho_id', $carrinho->id)
+                ->delete();
         }
 
         return back()->with('success', 'Item removido!');
     }
 
-    // Limpar carrinho inteiro
-    public function clear()
+
+
+    // Limpar carrinho
+    public function limpar()
     {
-        Carrinho::where('user_id', auth()->id())->delete();
+        $carrinho = Carrinho::where('user_id', auth()->id())->first();
+
+        if ($carrinho) {
+            ProdutoCarrinho::where('carrinho_id', $carrinho->id)->delete();
+        }
+
         return back()->with('success', 'Carrinho limpo!');
     }
 
-    // Finalizar: monta mensagem e redireciona para WhatsApp do fabricante principal dos itens
+
+
+    // Finalizar carrinho para WhatsApp
     public function finalizar()
     {
-        $itens = Carrinho::where('user_id', auth()->id())->with('produto.fabricante')->get();
+        $carrinho = Carrinho::where('user_id', auth()->id())->first();
+
+        if (!$carrinho) {
+            return back()->with('error', 'Seu carrinho está vazio!');
+        }
+
+        $itens = $carrinho->produtos()->with('fabricante')->get();
 
         if ($itens->isEmpty()) {
             return back()->with('error', 'Seu carrinho está vazio!');
         }
 
-        // Monta mensagem
+        // Mensagem WhatsApp
         $mensagem = "Olá! Gostaria de fazer um pedido:%0A%0A";
+
         foreach ($itens as $item) {
-            $mensagem .= "- {$item->produto->nome} (Qtd: {$item->quantidade})%0A";
+            $mensagem .= "- {$item->nome}%0A";
         }
-        $mensagem .= "%0A*Pedido realizado pelo sistema Marcenaria Conectada.*";
 
-        // Pegar número do fabricante do primeiro item
-        $fabricante = $itens->first()->produto->fabricante ?? null;
-        $numero = $fabricante && !empty($fabricante->whatsapp) ? preg_replace('/\D/','', $fabricante->whatsapp) : '5541991822190';
+        $mensagem .= "%0A*Pedido enviado via Marcenaria Conectada.*";
 
+        // WhatsApp do fabricante do primeiro item
+        $fabricante = $itens->first()->fabricante ?? null;
 
-        Carrinho::where('user_id', auth()->id())->delete();
+        $numero = $fabricante && !empty($fabricante->whatsapp)
+            ? preg_replace('/\D/','', $fabricante->whatsapp)
+            : '5541991822190';
 
         return redirect("https://wa.me/{$numero}?text={$mensagem}");
     }

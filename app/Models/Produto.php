@@ -34,8 +34,13 @@ class Produto extends Model
     }
 
     // Produto pode estar em vários carrinhos
+  //  public function carrinhos()
+    //{
+      //  return $this->hasMany(Carrinho::class, 'produto_id');
+    //}
     public function carrinhos()
     {
-        return $this->hasMany(Carrinho::class, 'produto_id');
+        return $this->belongsToMany(Carrinho::class, 'produto_carrinhos', 'produto_id', 'carrinho_id');
     }
+
 }

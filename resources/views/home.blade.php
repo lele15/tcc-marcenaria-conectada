@@ -26,7 +26,7 @@
                 <a href="{{ route('historico') }}" title="Histórico">
                     <span class="material-icons">assignment</span>
                 </a>
-                <a href="{{ route('carrinho') }}" title="Carrinho">
+                <a href="{{ route('carrinho.index') }}" title="Carrinho">
                     <span class="material-icons">shopping_cart</span>
                 </a>
                 <a href="{{ route('favoritos') }}" title="Favoritos">
@@ -82,7 +82,12 @@
                     <a href="{{route('favoritos')}}">
                         <span class="material-icons favorito">favorite_border</span>
                     </a>
-                    <a href="{{route('carrinho')}}">Adicionar ao carrinho</a>
+                    {{--<a href="{{route('carrinho')}}">Adicionar ao carrinho</a>--}}
+                    <form action="{{ route('carrinho.adicionar') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="produto_id" value="{{ $item->id }}">
+                        <button type="submit" class="add-to-cart">Adicionar ao carrinho</button>
+                    </form>
                 </div>
             </div>
           @endforeach
@@ -107,8 +112,61 @@
         </div>
 
 <script>
+
+// Seleciona todos os botões "Adicionar ao carrinho"
+const buttons = document.querySelectorAll('.add-to-cart');
+
+// Carrinho no localStorage
+function getCart() {
+  return JSON.parse(localStorage.getItem('cart')) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Adicionar item
+function addToCart(item) {
+  let cart = getCart();
+
+  let existente = cart.find(i => i.id == item.id);
+
+  if (existente) {
+    existente.quantity++;
+  } else {
+    cart.push(item);
+  }
+
+  saveCart(cart);
+
+  alert(item.name + " adicionado ao carrinho!");
+}
+
+// Clique dos botões
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+
+    // item mais próximo
+    const itemDiv = btn.closest('.item');
+
+    const item = {
+      id: btn.dataset.id,
+      name: itemDiv.querySelector('h3').textContent,
+      description: itemDiv.querySelector('span:nth-of-type(2)').textContent,
+      img: itemDiv.querySelector('img').src,
+      price: btn.dataset.preco,
+      quantity: 1
+    };
+
+    addToCart(item);
+  });
+});
+
+
+
+
   // FAVORITO CLICÁVEL
-  const favoriteIcon = document.getElementById('favorite-icon');
+  /*const favoriteIcon = document.getElementById('favorite-icon');
   favoriteIcon.addEventListener('click', (e) => {
     e.preventDefault(); // evita seguir o link
     favoriteIcon.classList.toggle('favorited');
@@ -149,7 +207,7 @@
   });
 
   // Atualiza contador ao carregar a página
-  updateCartCounter();
+  updateCartCounter();*/
 
 </script>
 

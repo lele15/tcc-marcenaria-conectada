@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Fabricante;
+use App\Models\ProdutoCarrinho;
 
 class ProdutoController extends Controller
 {
@@ -132,16 +133,42 @@ class ProdutoController extends Controller
     /**
      * Deletar produto
      */
-    public function destroy($id)
+    /*public function destroy($id)
     {
         $produto = Produto::find($id);
 
         if ($produto) {
             $produto->delete();
         }
-
         return redirect()->route('produtos.index');
+    }*/
+
+
+/**
+ * Deletar produto
+ */
+public function destroy($id)
+{
+    // Encontra o produto pelo ID ou retorna erro
+    $produto = Produto::find($id);
+
+    if ($produto) {
+        // Deleta todos os registros relacionados no carrinho
+        ProdutoCarrinho::where('produto_id', $produto->id)->delete();
+
+        // Deleta o produto
+        $produto->delete();
+
+        // Redireciona com mensagem de sucesso
+        return redirect()->route('produtos.index')
+                         ->with('success', 'Produto deletado com sucesso!');
     }
+
+    // Se o produto não existir, redireciona com erro
+    return redirect()->route('produtos.index')
+                     ->with('error', 'Produto não encontrado.');
+}
+
 
     /**
      * Ativar / desativar
