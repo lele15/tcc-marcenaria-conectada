@@ -15,20 +15,17 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="nav-content">
-
             <div class="logo">
                 <a href="{{ route('home') }}">
                     <img src="/img/logo.png" alt="Marcenaria Conectada">
                 </a>
             </div>
-
             <div class="nav-icons">
                 <a href="{{ route('historico') }}" title="Histórico"><span class="material-icons">assignment</span></a>
                 <a href="{{ route('favoritos') }}" title="Favoritos"><span class="material-icons">favorite</span></a>
                 <a href="{{ route('visualizarcliente') }}" title="Perfil"><span class="material-icons">account_circle</span></a>
                 <a href="{{ route('home') }}" title="Sair"><span class="material-icons">logout</span></a>
             </div>
-
         </div>
     </header>
 
@@ -43,16 +40,12 @@
 
                 <div class="produto-info">
                     <strong>{{ $item->nome }}</strong>
-
                     <span>Categoria: {{ $item->categoria }}</span>
                     <p></p>
-
                     <span>Descrição: {{ $item->descricao }}</span>
                     <p></p>
-
                     <span>Medidas: {{ $item->altura }} x {{ $item->largura }} x {{ $item->profundidade }}</span>
                     <p></p>
-
                     <span>Fabricante: {{ $item->fabricante->name ?? 'Desconhecido' }}</span>
                 </div>
 
@@ -74,21 +67,16 @@
 
             </div>
         @empty
-
             <p style="text-align:center; margin-top:20px; font-size:18px;">
                 Seu carrinho está vazio. 🛒
             </p>
-
         @endforelse
-
 
         <!-- Resumo -->
         <div class="resumo">
             <h2>Resumo do Pedido</h2>
             <div class="itens-resumo"></div>
-
             <hr>
-
             <p class="total">
                 <strong>Total</strong>
                 <strong>R$ 0,00</strong>
@@ -96,107 +84,117 @@
 
             <button class="whatsapp-btn" id="whatsappBtn">Pedir via WhatsApp</button>
             <button class="continuar-btn" onclick="window.location.href='/'">Continuar comprando</button>
-            <button class="limpar-btn" id="limparCarrinho">Limpar carrinho</button>
+
+            <form action="{{ route('carrinho.limpar') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="limpar-btn">Limpar carrinho</button>
+            </form>
         </div>
-
     </section>
-
-    <!-- Footer -->
+    <!-- Rodapé -->
     <div class="footer">
         <h3>Redes Sociais</h3>
         <div class="social-icons">
-            <a href="https://instagram.com/ale_moveis_rusticos" target="_blank"><img src="/img/insta.png" alt=""></a>
-            <a href="https://wa.me/5541991822190" target="_blank"><img src="/img/whats.png" alt=""></a>
-            <a href="mailto:alexandrealmeidanascimento@gmail.com"><img src="/img/email.png" alt=""></a>
+        <a href="https://instagram.com/ale.snsc" target="_blank">
+            <img src="img/insta.png" alt="Instagram">
+        </a>
+        <a href="https://wa.me/5541992772292" target="_blank">
+            <img src="img/whats.png" alt="WhatsApp">
+        </a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=alexandrealmeidanascimento@gmail.com" target="_blank">
+            <img src="img/email.png" alt="Email">
+        </a>
         </div>
         <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
     </div>
 
     <!-- Script -->
     <script>
-        const produtos = document.querySelectorAll('.produto');
-        const itensResumo = document.querySelector('.itens-resumo');
-        const totalResumo = document.querySelector('.resumo .total strong:last-child');
+        window.addEventListener('DOMContentLoaded', () => {
 
-        function atualizarCarrinho() {
-            let total = 0;
-            itensResumo.innerHTML = '';
+            const itensResumo = document.querySelector('.itens-resumo');
+            const totalResumo = document.querySelector('.resumo .total strong:last-child');
 
+            function atualizarCarrinho() {
+                let total = 0;
+                itensResumo.innerHTML = '';
+
+                const produtos = document.querySelectorAll('.produto');
+                produtos.forEach(produto => {
+                    if (!document.body.contains(produto)) return;
+
+                    const nome = produto.querySelector('.produto-info strong').textContent;
+                    const preco = parseFloat(produto.dataset.preco);
+                    const quantidade = parseInt(produto.querySelector('.qtd').textContent);
+                    const subtotal = preco * quantidade;
+
+                    produto.querySelector('.subtotal').textContent =
+                        `R$ ${subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+
+                    total += subtotal;
+
+                    // adiciona ao resumo
+                    const itemResumo = document.createElement('p');
+                    itemResumo.innerHTML =
+                        `<span>${nome} (${quantidade}x)</span><span>R$ ${subtotal.toLocaleString('pt-BR', {minimumFractionDigits:2})}</span>`;
+                    itensResumo.appendChild(itemResumo);
+                });
+
+                totalResumo.textContent = `R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+            }
+
+            // controles de quantidade
+            const produtos = document.querySelectorAll('.produto');
             produtos.forEach(produto => {
-                if (!document.body.contains(produto)) return;
+                const btnMais = produto.querySelector('.mais');
+                const btnMenos = produto.querySelector('.menos');
+                const qtd = produto.querySelector('.qtd');
 
-                const nome = produto.querySelector('.produto-info strong').textContent;
-                const preco = parseFloat(produto.dataset.preco);
-                const quantidade = parseInt(produto.querySelector('.qtd').textContent);
-                const subtotal = preco * quantidade;
-
-                produto.querySelector('.subtotal').textContent =
-                    `R$ ${subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-
-                total += subtotal;
-
-                // adiciona ao resumo
-                const itemResumo = document.createElement('p');
-                itemResumo.innerHTML =
-                    `<span>${nome} (${quantidade}x)</span><span>R$ ${subtotal.toLocaleString('pt-BR', {minimumFractionDigits:2})}</span>`;
-                itensResumo.appendChild(itemResumo);
-            });
-
-            totalResumo.textContent = `R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-        }
-
-
-        produtos.forEach(produto => {
-
-            const btnMais = produto.querySelector('.mais');
-            const btnMenos = produto.querySelector('.menos');
-            const qtd = produto.querySelector('.qtd');
-            const btnRemover = produto.querySelector('.remover-btn');
-
-            btnMais.addEventListener('click', () => {
-                qtd.textContent = parseInt(qtd.textContent) + 1;
-                atualizarCarrinho();
-            });
-
-            btnMenos.addEventListener('click', () => {
-                if (parseInt(qtd.textContent) > 1) {
-                    qtd.textContent = parseInt(qtd.textContent) - 1;
+                btnMais.addEventListener('click', () => {
+                    qtd.textContent = parseInt(qtd.textContent) + 1;
                     atualizarCarrinho();
+                });
+
+                btnMenos.addEventListener('click', () => {
+                    if (parseInt(qtd.textContent) > 1) {
+                        qtd.textContent = parseInt(qtd.textContent) - 1;
+                        atualizarCarrinho();
+                    }
+                });
+            });
+
+            // botão WhatsApp
+            document.getElementById('whatsappBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const produtosAtuais = document.querySelectorAll('.produto');
+                if (produtosAtuais.length === 0) {
+                    alert('Seu carrinho está vazio!');
+                    return;
                 }
+
+                let mensagem = 'Olá! Gostaria de pedir os seguintes produtos:\n';
+
+                produtosAtuais.forEach(produto => {
+                    const nome = produto.querySelector('.produto-info strong').textContent;
+                    const qtd = produto.querySelector('.qtd').textContent;
+                    //const img = produto.querySelector('img').src;
+                    mensagem += `- ${nome} (x${qtd})\n`;
+                });
+
+                mensagem += `Total: ${totalResumo.textContent}`;
+
+                const url = `https://wa.me/5541991822190?text=${encodeURIComponent(mensagem)}`;
+                window.open(url, '_blank');
             });
 
-            btnRemover.addEventListener('click', () => {
-                produto.remove();
-                atualizarCarrinho();
-            });
-        });
-
-        // limpar carrinho (visualmente)
-        document.getElementById('limparCarrinho').addEventListener('click', () => {
-            produtos.forEach(p => p.remove());
+            // inicia carrinho
             atualizarCarrinho();
         });
-
-        // whatsapp
-        document.getElementById('whatsappBtn').addEventListener('click', () => {
-            let mensagem = 'Olá! Gostaria de pedir os seguintes produtos:\n';
-
-            produtos.forEach(produto => {
-                const nome = produto.querySelector('.produto-info strong').textContent;
-                const qtd = produto.querySelector('.qtd').textContent;
-                mensagem += `- ${nome} (x${qtd})\n`;
-            });
-
-            mensagem += `Total: ${totalResumo.textContent}`;
-
-            const url = `https://wa.me/5541991822190?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
-        });
-
-        // inicia
-        window.addEventListener('load', atualizarCarrinho);
     </script>
 
 </body>
 </html>
+
 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\FavoritoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,13 +27,19 @@ Route::get('/', function () {
 apaguei o arquivo dashbo ard
 */
 
-Route::middleware('auth')->group(function () {
-Route::post('/carrinho/adicionar', [CarrinhoController::class, 'adicionar'])->name('carrinho.adicionar');
-Route::post('/carrinho/add', [CarrinhoController::class, 'adicionar'])->name('carrinho.add');
-Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
-Route::get('/carrinho/remover/{produtoId}', [CarrinhoController::class, 'remover'])->name('carrinho.remover');
-Route::get('/carrinho/limpar', [CarrinhoController::class, 'limpar'])->name('carrinho.limpar');
-Route::get('/carrinho/finalizar', [CarrinhoController::class, 'finalizar'])->name('carrinho.finalizar');
+Route::middleware('auth')->group(function ()
+{
+    Route::get('/favoritos', [FavoritoController::class, 'index'])->name('favoritos');
+    Route::post('/favoritos/toggle/{produto_id}', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');
+    Route::delete('/favoritos/{produto_id}', [FavoritoController::class, 'destroy'])->name('favoritos.destroy')->middleware('auth');
+
+
+    Route::post('/carrinho/adicionar', [CarrinhoController::class, 'adicionar'])->name('carrinho.adicionar');
+    Route::post('/carrinho/add', [CarrinhoController::class, 'adicionar'])->name('carrinho.add');
+    Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
+    Route::delete('/carrinho/remover/{produto_id}', [CarrinhoController::class, 'remover'])->name('carrinho.remover');
+    Route::delete('/carrinho/limpar/', [CarrinhoController::class, 'limpar'])->name('carrinho.limpar');
+    Route::get('/carrinho/finalizar', [CarrinhoController::class, 'finalizar'])->name('carrinho.finalizar');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

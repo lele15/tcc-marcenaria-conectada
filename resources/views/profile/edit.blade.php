@@ -27,9 +27,9 @@
                     <span class="material-icons">assignment</span>
                 </a>
 
-                {{-- <a href="{{ route('carrinho.index') }}">
-        <span class="material-icons">shopping_cart</span>
-      </a> --}}
+                <a href="{{ route('carrinho.index') }}">
+                    <span class="material-icons">shopping_cart</span>
+                </a>
 
                 {{-- <a href="{{ route('favoritos.index') }}">
         <span class="material-icons">favorite</span>

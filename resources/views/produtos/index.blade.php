@@ -12,11 +12,11 @@
   <header class="navbar">
     <div class="nav-content">
       <!-- Logo -->
-      <div class="logo">
-
-          <img src="img/logo.png" alt="Marcenaria Conectada">
-
-      </div>
+ <div class="logo">
+                <a href="{{ route('home') }}">
+                    <img src="/img/logo.png" alt="Marcenaria Conectada">
+                </a>
+            </div>
       <div class="nav-icons">
         <a href="" title="Histórico">
           <span class="material-icons">assignment</span>

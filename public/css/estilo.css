@@ -75,39 +75,56 @@ flex-grow: 1;
 }
 
 /* Rodapé */
-
 .footer {
-  position: fixed;
-  width: 100%; /* Faz o footer ocupar toda a largura da tela */
-  background-color: #9D8576;/* Cor de fundo */
-  color: #333; /* Cor do texto */
-  text-align: center; /* Centraliza o texto */
-  padding: 15px 0; /* Espaçamento interno */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  position: relative; /* evita sobreposição em telas pequenas */
+  width: 100%;
+  background-color: #9D8576;
+  color: #333;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   bottom: 0;
   left: 0;
 }
 
+/* Ícones das redes sociais */
 .footer .social-icons {
   display: flex;
   justify-content: center;
-  gap: 2rem; /* espaçamento dos icones */
+  flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
+  gap: 1.5rem;
   margin: 1rem 0;
 }
 
 .footer .social-icons img {
-  width: 10px;   /* tamanho fixo */
-  height: 10px;  /* deixa tudo igual */
-  object-fit: contain; /* não deixa a foto distorcer */
+  width: 2.5rem;   /* tamanho fixo e visível */
+  height: 2.5rem;
+  object-fit: contain;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
 
 .footer .social-icons img:hover {
-  transform: scale(1.1); /* efeito zoom ao passar por cima */
+  transform: scale(1.2);
 }
 
+/* Ícones do Material Icons (se houver) */
 .footer .material-icons {
-  font-size: 2rem;
+  font-size: 2.5rem;
   cursor: pointer;
 }
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .footer .social-icons img,
+  .footer .material-icons {
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+  }
+
+  .footer .social-icons {
+    gap: 1rem;
+  }
+}
+

@@ -24,7 +24,7 @@
             <a href="{{ route('historico') }}" title="Histórico">
                 <span class="material-icons">assignment</span>
             </a>
-            <a href="{{ route('carrinho') }}" title="Carrinho">
+            <a href="{{ route('carrinho.index') }}" title="Carrinho">
                 <span class="material-icons">shopping_cart</span>
             </a>
             <a href="{{ route('favoritos') }}" title="Favoritos">

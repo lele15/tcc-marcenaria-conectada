@@ -66,6 +66,7 @@
   color: #e53935;
   font-size: 1.5rem;
   cursor: pointer;
+  background:#ECDCCE;
 }
 
 .fav {
@@ -94,5 +95,5 @@
 }
 
 .actions button:hover {
-  background: #D7BDA6;
+  background: #ECDCCE;
 }

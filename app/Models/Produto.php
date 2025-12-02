@@ -33,6 +33,12 @@ class Produto extends Model
         return $this->hasMany(Favorito::class, 'produto_id');
     }
 
+    public function favoritoDoUsuario()
+    {
+        return $this->hasOne(Favorito::class, 'produto_id')->where('user_id', auth()->id());
+    }
+
+
     // Produto pode estar em vários carrinhos
   //  public function carrinhos()
     //{

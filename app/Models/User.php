@@ -27,9 +27,8 @@ class User extends Authenticatable
     // CLIENTE — favoritos
     public function favoritos()
     {
-        return $this->hasMany(Favorito::class);
+        return $this->hasMany(Favorito::class, 'user_id');
     }
-
     // CLIENTE — carrinho
     public function carrinho()
     {

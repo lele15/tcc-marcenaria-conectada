@@ -18,22 +18,6 @@ class FavoritoController extends Controller
         return view('favoritos.index', compact('favoritos'));
     }
 
-    // Adiciona aos favoritos (via form)
-    public function store(Request $request)
-    {
-        $request->validate([
-            'produto_id' => 'required|exists:produtos,id'
-        ]);
-
-        Favorito::firstOrCreate([
-            'user_id'    => auth()->id(),
-            'produto_id' => $request->produto_id
-        ]);
-
-        return back()->with('success', 'Produto adicionado aos favoritos!');
-    }
-
-    // Alterna favorito ↔ remover
     public function toggle($id)
     {
         if (!Produto::where('id', $id)->exists()) {
@@ -45,7 +29,11 @@ class FavoritoController extends Controller
                         ->first();
 
         if ($fav) {
-            $fav->delete();
+            // usa query builder ao invés de $fav->delete()
+            Favorito::where('user_id', auth()->id())
+                    ->where('produto_id', $id)
+                    ->delete();
+
             return back()->with('success', 'Removido dos favoritos!');
         }
 
@@ -57,13 +45,34 @@ class FavoritoController extends Controller
         return back()->with('success', 'Adicionado aos favoritos!');
     }
 
-    // Remove favorito (rota DELETE)
-    public function destroy(string $id)
+    public function destroy($produto_id)
     {
         Favorito::where('user_id', auth()->id())
-                ->where('produto_id', $id)
+                ->where('produto_id', $produto_id)
                 ->delete();
 
         return back()->with('success', 'Favorito removido!');
     }
+
+
+
+
+   /* public function toggle(Produto $produto)
+    {
+        $fav = Favorito::where('user_id', auth()->id())
+                       ->where('produto_id', $produto->id)
+                       ->first();
+
+        if ($fav) {
+            $fav->delete();
+            return back()->with('success', 'Removido dos favoritos!');
+        }
+
+        Favorito::create([
+            'user_id' => auth()->id(),
+            'produto_id' => $produto->id
+        ]);
+
+        return back()->with('success', 'Adicionado aos favoritos!');
+    }*/
 }

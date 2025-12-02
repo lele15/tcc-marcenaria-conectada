@@ -45,6 +45,7 @@
 
 .actions .material-icons {
   color: #e53935;
+  background:#ECDCCE;
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -59,7 +60,7 @@
 }
 
 .actions button:hover {
-  background: #D7BDA6;
+  background: #ECDCCE;
 }
 
 .favorito {

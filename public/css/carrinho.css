@@ -3,7 +3,7 @@
 
 /* ===== Carrinho ===== */
 .cart-container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 40px auto;
     background-color: #EADCCF;
     padding: 25px;
@@ -28,8 +28,8 @@
 }
 
 .produto img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -134,3 +134,4 @@
     background-color: #8B5E45;
     color:#fff;
 }
+

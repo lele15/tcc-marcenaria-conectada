@@ -79,10 +79,21 @@
             <span>Preço: {{ $item->preco }}</span>
             <p></p>
                 <div class="actions">
-                    <a href="{{route('favoritos')}}">
+                   {{--<a href="{{route('favoritos')}}">
                         <span class="material-icons favorito">favorite_border</span>
-                    </a>
-                    {{--<a href="{{route('carrinho')}}">Adicionar ao carrinho</a>--}}
+                    </a>--}}
+                    {{--<a href="{{route('carrinho.index')}}">Adicionar ao carrinho</a>--}}
+                    <form action="{{ route('favoritos.toggle', $item->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="material-icons favorito">
+                            @if(auth()->check() && auth()->user()->favoritos->contains('produto_id', $item->id))
+                                favorite
+                            @else
+                                favorite_border
+                            @endif
+                        </button>
+                    </form>
+
                     <form action="{{ route('carrinho.adicionar') }}" method="POST">
                         @csrf
                         <input type="hidden" name="produto_id" value="{{ $item->id }}">
