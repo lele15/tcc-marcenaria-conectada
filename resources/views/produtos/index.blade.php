@@ -12,22 +12,22 @@
   <header class="navbar">
     <div class="nav-content">
       <!-- Logo -->
- <div class="logo">
-                <a href="{{ route('home') }}">
+        <div class="logo">
+            <a href="{{ route('home') }}">
                     <img src="/img/logo.png" alt="Marcenaria Conectada">
-                </a>
-            </div>
-      <div class="nav-icons">
-        <a href="" title="Histórico">
-          <span class="material-icons">assignment</span>
-        </a>
-        <a href="" title="Perfil do Fabricante">
-          <span class="material-icons">account_circle</span>
-        </a>
-        <a href="{{ route('home') }}" title="Home">
-          <span class="material-icons">logout</span>
-        </a>
-      </div>
+            </a>
+        </div>
+        <div class="nav-icons">
+            <a href="" title="Histórico">
+            <span class="material-icons">assignment</span>
+            </a>
+            <a href="{{ route('fabricante.view') }}" title="Perfil do Fabricante">
+            <span class="material-icons">account_circle</span>
+            </a>
+            <a href="{{ route('home') }}" title="Home">
+            <span class="material-icons">logout</span>
+            </a>
+        </div>
     </div>
   </header>
 
@@ -61,7 +61,7 @@
         </form>
 
 
-        <button class="btn">ativar</button>
+      <!--  <button class="btn">ativar</button> -->
      </div>
     @endforeach
 

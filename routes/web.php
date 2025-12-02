@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\FavoritoController;
+use App\Http\Controllers\FabricanteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,10 @@ apaguei o arquivo dashbo ard
 
 Route::middleware('auth')->group(function ()
 {
+    // PERFIL FABRICANTE
+    Route::get('/fabricante/perfil', [FabricanteController::class, 'view'])->name('fabricante.view');
+
+
     Route::get('/favoritos', [FavoritoController::class, 'index'])->name('favoritos');
     Route::post('/favoritos/toggle/{produto_id}', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');
     Route::delete('/favoritos/{produto_id}', [FavoritoController::class, 'destroy'])->name('favoritos.destroy')->middleware('auth');

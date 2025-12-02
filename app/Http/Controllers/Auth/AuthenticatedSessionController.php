@@ -29,6 +29,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if(strcmp(Auth::user()->papel, "FABRICANTE") == 0) {
+            return redirect()->intended(RouteServiceProvider::PAINEL);
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

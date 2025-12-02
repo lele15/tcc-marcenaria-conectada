@@ -32,7 +32,7 @@
                 <a href="{{ route('favoritos') }}" title="Favoritos">
                 <span class="material-icons">favorite</span>
                 </a>
-                <a href="{{ route('visualizarcliente') }}" title="Favoritos">
+                <a href="{{ route('visualizarcliente') }}" title="Perfil do Cliente">
                 <span class="material-icons">account_circle</span>
                 </a>
                 <form method="POST" action="{{ route('logout') }}">

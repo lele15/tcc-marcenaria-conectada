@@ -46,4 +46,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pedido::class);
     }
+
+    public function fabricante()
+    {
+        return $this->hasOne(Fabricante::class, 'user_id');
+    }
+
 }

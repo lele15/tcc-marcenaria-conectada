@@ -22,9 +22,13 @@ class Produto extends Model
     ];
 
     // Produto pertence ao fabricante
+    //public function fabricante()
+   // {
+     //   return $this->belongsTo(User::class, 'fabricante_id');
+   // }
     public function fabricante()
     {
-        return $this->belongsTo(User::class, 'fabricante_id');
+        return $this->belongsTo(Fabricante::class);
     }
 
     // Produto pode estar em vários favoritos

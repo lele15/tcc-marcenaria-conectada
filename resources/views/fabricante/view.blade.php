@@ -16,64 +16,52 @@
   <header class="navbar">
     <div class="nav-content">
       <!-- Logo -->
-      <div class="logo">
-        <a href="{{ route('home') }}" title="Home">
-          <img src="img/logo.png" alt="Marcenaria Conectada">
-        </a>
-      </div>
-      <div class="nav-icons">
-          <a href="{{ route('cadastrarproduto') }}" title="Cadastro de Produto">
-            <span class="material-icons">add</span>
-          </a>
-          <a href="{{ route('painel') }}" title="Painel do Fabricante">
-            <span class="material-icons">grid_view</span>
-          </a>
-          <a href="{{ route('home') }}" title="Home">
-            <span class="material-icons">logout</span>
-          </a>
+        <div class="logo">
+            <a href="{{ route('home') }}">
+                    <img src="/img/logo.png" alt="Marcenaria Conectada">
+            </a>
+        </div>
+        <div class="nav-icons">
+            <a href="{{ route('produtos.create') }}" title="Cadastro de Produto">
+                <span class="material-icons">add</span>
+            </a>
+            <a href="{{ route('produtos.index') }}" title="Painel do Fabricante">
+                <span class="material-icons">grid_view</span>
+            </a>
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <span class="material-icons">logout</span>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="post">
+                @csrf
+            </form>
       </div>
     </div>
   </header>
-
 <div class="visualizar">
-  <!-- Ícone de cliente -->
-  <div class="profile-photo">
-        <span class="material-icons">account_circle</span>
-  </div>
-
-  <!-- Título -->
-  <h1>Meu Perfil</h1>
-
-  <!-- Informações -->
-  <div class="profile-info">
-    <p><strong>Nome Completo:</strong> Alexandre de Almeida Nascimento</p>
-    <p><strong>Email:</strong> alexandrealmeidanascimento@gmail.com</p>
-    <p><strong>Instagram:</strong> @ale_moveis_rusticos </p>
-    <p><strong>Telefone:</strong> 41 99182-2190 </p>
-    <p><strong>CPF:</strong> 051.228.599-30 </p>
-    <p><strong>Endereço:</strong> Rua Benedito Fraga de Oliveira, 152, Jardim Paranaguá- Paranaguá- PR</p>
-  </div>
-
-        <button class="history-btn" onclick="window.location.href='Historico.html'">Histórico de Pedidos</button>
-
-
-</div>
-
-<!-- Footer -->
- <div class="footer">
-                <h3>Redes Sociais</h3>
-                <div class="social-icons">
-                    <a href="https://instagram.com/ale_moveis_rusticos" target="_blank">
-                    <img src="img/insta.png" alt="Instagram">
-                    </a>
-                    <a href="https://wa.me/5541991822190" target="_blank">
-                    <img src="img/whats.png" alt="WhatsApp">
-                    </a>
-                    <a href="mailto:alexandrealmeidanascimento@gmail.com">
-                    <img src="img/email.png" alt="Email">
-                    </a>
-                </div>
-                    <p>Horário de atendimento:<br>segunda à sexta<br>das 8h às 18h</p>
+        <div class="profile-photo">
+            <span class="material-icons">account_circle</span>
         </div>
+        <h1>Meu Perfil</h1>
+        <div class="profile-info">
+            <p><strong>Nome Completo:</strong> {{ $fabricante->nome }}</p>
+            <p><strong>Email:</strong> {{ $user->email }}</p>
+            <p><strong>Instagram:</strong> {{ $fabricante->instagram }}</p>
+            <p><strong>Whatsapp:</strong> {{ $fabricante->whatsapp }}</p>
+            <p><strong>CNPJ:</strong> {{ $fabricante->cnpj }}</p>
+
+        </div>
+
+       {{-- <button class="history-btn" onclick="window.location.href='{{ route('historicofabricante') }}'"> Histórico de
+            Pedidos
+        </button>
+        <div class="profile-actions">
+            <button class="edit-btn" onclick="window.location.href='{{ route('fabricante.edit') }}'">Editar Perfil
+            </button>
+        </div>--}}
+    </div>
+
+
 </body>
 </html>

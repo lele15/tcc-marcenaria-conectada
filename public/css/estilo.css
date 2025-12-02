@@ -76,12 +76,12 @@ flex-grow: 1;
 
 /* Rodapé */
 .footer {
-  position: relative; /* evita sobreposição em telas pequenas */
+  position: relative; /*position:relative; evita sobreposição em telas pequenas */
   width: 100%;
   background-color: #9D8576;
   color: #333;
   text-align: center;
-  padding: 15px 0;
+  padding: 2rem 2rem;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   bottom: 0;
   left: 0;

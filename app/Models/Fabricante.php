@@ -8,13 +8,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fabricante extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    public function user(){
-        return $this->belongsTo('App\Models\User');
+    protected $table = 'fabricantes';
+
+    protected $fillable = [
+        'user_id',
+        'cnpj',
+        'instagram',
+        'whatsapp',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
-    public function produto (){
-        return $this->hasMany('App\Models\Produto');
+
+    public function produtos()
+    {
+        return $this->hasMany(Produto::class, 'fabricante_id');
     }
 }
